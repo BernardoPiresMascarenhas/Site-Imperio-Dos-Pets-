@@ -15,10 +15,11 @@ export default function FormularioContato() {
     setErrorMessage("");
 
     const form = e.target as HTMLFormElement;
-    const name = form.name.value.trim();
-    const email = form.email.value.trim();
-    const numero = form.numero.value.trim();
-    const message = form.message.value.trim();
+
+  const name = (form.elements.namedItem("name") as HTMLInputElement)?.value.trim();
+  const email = (form.elements.namedItem("email") as HTMLInputElement)?.value.trim();
+  const numero = (form.elements.namedItem("numero") as HTMLInputElement)?.value.trim();
+  const message = (form.elements.namedItem("message") as HTMLTextAreaElement)?.value.trim();
 
     if (!name || !email || !numero || !message) {
       setErrorMessage("Por favor, preencha todos os campos.");
