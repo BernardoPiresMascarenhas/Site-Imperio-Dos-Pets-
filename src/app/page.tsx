@@ -45,17 +45,17 @@ function App() {
       {minimized && !showPromo && (
         <button
           onClick={() => {
-            setShowPromo(true);
-            setMinimized(false);
+          setShowPromo(true);
+          setMinimized(false);
           }}
-          className="fixed bottom-4 left-8 p-2 rounded-full hover:scale-110 transition-transform duration-300 z-50"
+          className="fixed bottom-4 left-8 p-2 rounded-full hover:scale-110 transition-transform duration-300 z-50 sm:left-8 sm:p-2 md:left-8 md:p-2 xs:left-4 xs:p-1" // 'xs' aqui é só um exemplo, veja abaixo como fazer
         >
           <Image
             src="/promo-icon.png"
             alt="Promoção"
-            width={80}   
-            height={80}  
-            className="animate-bounce"
+            width={80} // tamanho padrão para desktop
+            height={80}
+            className="animate-bounce sm:w-20 sm:h-20 md:w-20 md:h-20 xs:w-12 xs:h-12" // menor no celular
           />
         </button>
       )}

@@ -26,8 +26,10 @@ const Services = () => {
   return (
     <div id="services" className="py-20 bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-        <h2 className="text-4xl font-extrabold text-center text-purple-800 mb-14 drop-shadow">
-          🐾 Nossos Serviços 🐾
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-center text-purple-800 mb-10 drop-shadow flex items-center justify-center gap-2">
+          <span>🐾</span>
+            <span>Nossos Serviços</span>
+          <span>🐾</span>
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">

@@ -53,12 +53,10 @@ const PromoModal = ({ onClose, onWhatsApp }: PromoModalProps) => {
             <motion.img
               src="/promocao.png"
               alt="Promoção"
-              width={350}
-              height={350}
-              className="rounded-2xl shadow-xl border-4 border-purple-200 transition duration-300 hover:scale-105 hover:border-purple-400"
+              className="rounded-2xl shadow-xl border-4 border-purple-200 transition duration-300 hover:scale-105 hover:border-purple-400 w-64 sm:w-80"
               whileHover={{ scale: 1.05 }}
-            />
-          </motion.div>
+              />
+            </motion.div>
 
           {/* Botão WhatsApp */}
           <motion.button
