@@ -5,20 +5,7 @@ import BotaoAgendamento from "@/app/components/BotaoAgendamento"
 
 
 const Hero = () => {
-    const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
-        e.preventDefault();
-        const element = document.getElementById(sectionId);
-        if (element) {
-          const headerOffset = 112; // This matches our header height of 4rem (64px)
-          const elementPosition = element.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-    
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          });
-        }
-    };
+
     return ( 
         <div id="home" className="relative bg-customWhite">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">

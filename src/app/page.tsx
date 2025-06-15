@@ -7,65 +7,22 @@ import Hero from "./components/hero";
 import Services from "./components/services";
 import AboutUs from "./components/about";
 import Gallery from "./components/gallery";
+import Image from 'next/image';
 
 import FormularioContato from "@/app/components/FormularioContato";
 import PromoModal from "./components/PromoModal"; 
 
 function App() {
-  const [isLoading, setIsLoading] = useState(false);
   const [showPromo, setShowPromo] = useState(false);       
   const [minimized, setMinimized] = useState(false);       
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setShowPromo(true); // Abre o modal após 3 segundos
+      setShowPromo(true); // Abre o modal após 7 segundos
     }, 7000);
 
-    return () => clearTimeout(timer); // Limpa o timer ao desmontar
+    return () => clearTimeout(timer); 
   }, []);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    setIsLoading(true);
-
-    const inputname = document.querySelector('input[name="name"]') as HTMLInputElement;
-    const inputemail = document.querySelector('input[name="email"]') as HTMLInputElement;
-    const inputnumero = document.querySelector('input[name="numero"]') as HTMLInputElement;
-    const inputmessage = document.querySelector('textarea[name="message"]') as HTMLTextAreaElement;
-
-    const formData = new FormData(e.target as HTMLFormElement);
-    const data = Object.fromEntries(formData.entries());
-
-    const formDataConverted = {
-      nome: data.name,
-      email: data.email,
-      numero: data.numero,
-      mensagem: data.message,
-    };
-
-    try {
-      const response = await fetch("/api/agendar", {
-        method: "POST",
-        body: JSON.stringify(formDataConverted),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      const result = await response.json();
-      if (result) {
-        inputname.value = "";
-        inputemail.value = "";
-        inputnumero.value = "";
-        inputmessage.value = "";
-      }
-    } catch (error) {
-      console.error("Error submitting form: ", error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -86,20 +43,22 @@ function App() {
 
       {/* Botão flutuante para reabrir o modal */}
       {minimized && !showPromo && (
-      <button
-        onClick={() => {
-        setShowPromo(true);
-        setMinimized(false);
-      }}
-      className="fixed bottom-4 left-8 p-2 rounded-full hover:scale-110 transition-transform duration-300 z-50"
-      >
-      <img
-        src="/promo-icon.png"
-        alt="Promoção"
-        className="w-20 h-20 animate-bounce"
-      />
-    </button>
-)}
+        <button
+          onClick={() => {
+            setShowPromo(true);
+            setMinimized(false);
+          }}
+          className="fixed bottom-4 left-8 p-2 rounded-full hover:scale-110 transition-transform duration-300 z-50"
+        >
+          <Image
+            src="/promo-icon.png"
+            alt="Promoção"
+            width={80}   
+            height={80}  
+            className="animate-bounce"
+          />
+        </button>
+      )}
 
       {/* Navigation */}
       <Header />
@@ -112,8 +71,6 @@ function App() {
 
       {/* About Section */}
       <AboutUs />
-
-      
 
       {/* Gallery Section */}
       <Gallery />
@@ -150,7 +107,12 @@ function App() {
         rel="noopener noreferrer"
         className="fixed bottom-4 right-4 bg-green-500 p-3 rounded-full shadow-lg hover:bg-green-600 transition-transform duration-300 ease-in-out hover:scale-110"
       >
-        <img src="/whatsapp.png" alt="WhatsApp" className="w-12 h-12" />
+        <Image
+          src="/whatsapp.png"
+          alt="WhatsApp"
+          width={48}  
+          height={48}
+        />
       </a>
 
       {/* Footer */}
@@ -158,7 +120,13 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-center items-center">
             <div className="flex items-center">
-              <img src="/logo.png" alt="Império dos Pets" width={150} height={150} />
+              <Image 
+                src="/logo.png" 
+                alt="Império dos Pets" 
+                width={150} 
+                height={150} 
+                priority 
+              />
             </div>
             <div className="mt-4 md:mt-0">
               <p>&copy; 2025 Império dos Pets. Todos os direitos reservados.</p>

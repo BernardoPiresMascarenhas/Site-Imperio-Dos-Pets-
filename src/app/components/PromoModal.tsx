@@ -42,7 +42,7 @@ const PromoModal = ({ onClose, onWhatsApp }: PromoModalProps) => {
             🎉 Promoção Especial! 🎉
           </motion.h2>
 
-          {/* Imagem com animação e hover */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <motion.div
             className="flex justify-center"
             initial={{ scale: 0.9, opacity: 0 }}
