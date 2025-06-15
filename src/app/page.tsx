@@ -53,9 +53,9 @@ function App() {
           <Image
             src="/promo-icon.png"
             alt="Promoção"
-            width={80} // tamanho padrão para desktop
-            height={80}
-            className="animate-bounce sm:w-20 sm:h-20 md:w-20 md:h-20 xs:w-12 xs:h-12" // menor no celular
+            width={48} 
+            height={48}
+            className="w-14 h-14 sm:w-20 sm:h-20 animate-bounce"
           />
         </button>
       )}
