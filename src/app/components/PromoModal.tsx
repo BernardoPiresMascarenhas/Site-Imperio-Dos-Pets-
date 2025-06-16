@@ -1,3 +1,4 @@
+
 "use client";
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -17,8 +18,9 @@ const PromoModal = ({ onClose, onWhatsApp }: PromoModalProps) => {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
       >
+        {/* AJUSTE 1: Diminuí a largura máxima para 'sm' e a altura máxima para 85vh */}
         <motion.div
-          className="relative bg-white rounded-3xl shadow-2xl border border-purple-300 overflow-y-auto max-h-[90vh] w-full max-w-md p-6"
+          className="relative bg-white rounded-3xl shadow-2xl border border-purple-300 overflow-y-auto max-h-[85vh] w-full max-w-sm p-6"
           initial={{ y: -40, opacity: 0, scale: 0.95 }}
           animate={{ y: 0, opacity: 1, scale: 1 }}
           exit={{ y: 40, opacity: 0, scale: 0.9 }}
@@ -53,10 +55,11 @@ const PromoModal = ({ onClose, onWhatsApp }: PromoModalProps) => {
             <motion.img
               src="/promocao.png"
               alt="Promoção"
-              className="rounded-2xl shadow-xl border-4 border-purple-200 transition duration-300 w-auto max-h-[50vh] sm:max-h-[60vh]"
+              // AJUSTE 2: Diminuí a altura máxima da imagem para 45vh
+              className="rounded-2xl shadow-xl border-4 border-purple-200 transition duration-300 w-auto max-h-[45vh]"
               whileHover={{ scale: 1.05 }}
               />
-            </motion.div>
+          </motion.div>
 
           {/* Botão WhatsApp */}
           <motion.button
