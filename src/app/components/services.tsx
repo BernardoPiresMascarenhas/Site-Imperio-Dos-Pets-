@@ -32,7 +32,7 @@ const Services = () => {
           <span>🐾</span>
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
           <ServiceCard
             icon={<Stethoscope className="h-10 w-10 text-pink-600" />}
             title="Consultas"
@@ -58,22 +58,6 @@ const Services = () => {
             img="/dog2.png"
           />
           <ServiceCard
-            icon={<Bath className="h-10 w-10 text-teal-500" />}
-            title="Pet Shop"
-            description="Produtos e acessórios para seu pet com muito amor e qualidade."
-            openModal={openModal}
-            wpplink="https://wa.me/553195306014?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20os%20Produtos%20e%20Acessórios."
-            img="/cat2.png"
-          />
-          <ServiceCard
-            icon={<LiaToothSolid className="h-10 w-10 text-orange-500" />}
-            title="Tartarectomia"
-            description="Limpeza e higiene dentária para um sorriso saudável."
-            openModal={openModal}
-            wpplink="https://wa.me/553195306014?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20a%20Tartarectomia."
-            img="/dog3.png"
-          />
-          <ServiceCard
             icon={<HeartPulse className="h-10 w-10 text-red-500" />}
             title="Cirurgia"
             description="Procedimentos seguros com profissionais experientes e cuidadosos."
@@ -82,12 +66,12 @@ const Services = () => {
             img="/cat3.png"
           />
           <ServiceCard
-            icon={<House className="h-10 w-10 text-yellow-500" />}
-            title="Creche"
-            description="Cuidado e diversão durante o dia para o seu pet brincar e socializar."
+            icon={<Bath className="h-10 w-10 text-teal-500" />}
+            title="Pet Shop"
+            description="Produtos e acessórios para seu pet com muito amor e qualidade."
             openModal={openModal}
-            wpplink="https://wa.me/553195306014?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20a%20Creche."
-            img="/dog4.png"
+            wpplink="https://wa.me/553195306014?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20os%20Produtos%20e%20Acessórios."
+            img="/cat2.png"
           />
           <ServiceCard
             icon={<BriefcaseMedical className="h-10 w-10 text-green-600" />}

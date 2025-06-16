@@ -18,7 +18,7 @@ const PromoModal = ({ onClose, onWhatsApp }: PromoModalProps) => {
         exit={{ opacity: 0 }}
       >
         <motion.div
-          className="relative bg-white rounded-3xl shadow-2xl border border-purple-300 overflow-hidden w-full max-w-md p-6"
+          className="relative bg-white rounded-3xl shadow-2xl border border-purple-300 overflow-y-auto max-h-[90vh] w-full max-w-md p-6"
           initial={{ y: -40, opacity: 0, scale: 0.95 }}
           animate={{ y: 0, opacity: 1, scale: 1 }}
           exit={{ y: 40, opacity: 0, scale: 0.9 }}

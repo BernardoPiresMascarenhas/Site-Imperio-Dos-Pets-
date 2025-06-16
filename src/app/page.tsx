@@ -18,8 +18,8 @@ function App() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setShowPromo(true); // Abre o modal após 7 segundos
-    }, 7000);
+      setShowPromo(true); 
+    }, 3000);
 
     return () => clearTimeout(timer); 
   }, []);
