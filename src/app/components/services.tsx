@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Scissors, Syringe, Stethoscope, Bath, HeartPulse, BriefcaseMedical, House } from "lucide-react";
-import { LiaToothSolid } from "react-icons/lia";
+import { Scissors, Syringe, Stethoscope, Bath, HeartPulse, BriefcaseMedical } from "lucide-react";
+
 import Modal from "./modal";
 import ServiceCard from "./ServiceCard";
 
