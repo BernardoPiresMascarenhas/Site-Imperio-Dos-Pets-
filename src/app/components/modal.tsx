@@ -187,7 +187,9 @@ const Modal: React.FC<ModalProps> = ({ title, description, closeModal, wpplink, 
                               Promoção
                             </span>
                           )}
-                           <span className="text-gray-800 font-medium text-sm mt-2">{item.price}</span>
+                           <span className={`text-sm mt-2 ${item.onSale ? 'text-green-600 font-semibold' : 'text-gray-800 font-medium'}`}>
+                            {item.price}
+                           </span>
                           <p className="text-sm text-gray-700 text-center mt-1 flex-grow">{item.name}</p>
                            {!item.available && (
                             <span className="text-red-500 text-xs font-bold mt-1">Indisponível</span>
