@@ -1,3 +1,4 @@
+
 import React from "react";
 
 interface ServiceCardProps {
@@ -6,7 +7,8 @@ interface ServiceCardProps {
   description: string;
   wpplink: string;
   img: string;
-  openModal: (title: string, description: string, wpplink: string, img: string) => void;
+  openModal: (title: string, description: string, wpplink: string, img: string, directToCatalog?: boolean) => void;
+  directToCatalog?: boolean; // MUDANÇA: Adicionada nova prop opcional
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({
@@ -16,11 +18,13 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   openModal,
   wpplink,
   img,
+  directToCatalog, // MUDANÇA: Recebendo a nova prop
 }) => {
   return (
     <div
       className="bg-gradient-to-br from-white to-purple-50 p-6 rounded-2xl shadow-lg border border-transparent hover:border-purple-300 transition-all duration-300 transform hover:scale-105 cursor-pointer"
-      onClick={() => openModal(title, description, wpplink, img)}
+      // MUDANÇA: Passando a prop para a função openModal
+      onClick={() => openModal(title, description, wpplink, img, directToCatalog)}
     >
       <div className="flex items-center justify-center w-14 h-14 rounded-full bg-purple-100 shadow-inner mb-4">
         <div className="text-purple-600 text-2xl">{icon}</div>

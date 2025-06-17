@@ -1,6 +1,7 @@
+// services.tsx ATUALIZADO
+
 import React, { useState } from "react";
 import { Scissors, Syringe, Stethoscope, Bath, HeartPulse, BriefcaseMedical } from "lucide-react";
-
 import Modal from "./modal";
 import ServiceCard from "./ServiceCard";
 
@@ -11,10 +12,12 @@ const Services = () => {
     description: string;
     wpplink: string;
     img: string;
+    directToCatalog?: boolean; // MUDANÇA: Adicionado novo campo opcional
   } | null>(null);
 
-  const openModal = (title: string, description: string, wpplink: string, img: string) => {
-    setModalContent({ title, description, wpplink, img });
+  const openModal = (title: string, description: string, wpplink: string, img: string, directToCatalog?: boolean) => {
+    // MUDANÇA: Função agora aceita o novo parâmetro
+    setModalContent({ title, description, wpplink, img, directToCatalog });
     setIsModalOpen(true);
   };
 
@@ -28,7 +31,7 @@ const Services = () => {
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <h2 className="text-2xl sm:text-3xl font-extrabold text-center text-purple-800 mb-10 drop-shadow flex items-center justify-center gap-2">
           <span>🐾</span>
-            <span>Nossos Serviços</span>
+          <span>Nossos Serviços</span>
           <span>🐾</span>
         </h2>
 
@@ -65,6 +68,7 @@ const Services = () => {
             wpplink="https://wa.me/553195306014?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20os%20Procedimentos%20Cirúrgicos."
             img="/cat3.png"
           />
+          {/* MUDANÇA: Adicionado directToCatalog={true} abaixo */}
           <ServiceCard
             icon={<Bath className="h-10 w-10 text-teal-500" />}
             title="Pet Shop"
@@ -72,7 +76,9 @@ const Services = () => {
             openModal={openModal}
             wpplink="https://wa.me/553195306014?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20os%20Produtos%20e%20Acessórios."
             img="/cat2.png"
+            directToCatalog={true}
           />
+          {/* MUDANÇA: Adicionado directToCatalog={true} abaixo */}
           <ServiceCard
             icon={<BriefcaseMedical className="h-10 w-10 text-green-600" />}
             title="Farmácia Pet"
@@ -80,6 +86,7 @@ const Services = () => {
             openModal={openModal}
             wpplink="https://wa.me/553195306014?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20a%20Farmácia%20Pet."
             img="/cat4.png"
+            directToCatalog={true}
           />
         </div>
       </div>
@@ -91,6 +98,8 @@ const Services = () => {
           wpplink={modalContent.wpplink}
           img={modalContent.img}
           closeModal={closeModal}
+          // MUDANÇA: Passando a nova propriedade para o Modal
+          directToCatalog={modalContent.directToCatalog}
         />
       )}
     </div>

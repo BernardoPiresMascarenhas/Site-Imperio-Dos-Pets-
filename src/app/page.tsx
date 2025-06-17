@@ -75,7 +75,7 @@ function App() {
       {/* Gallery Section */}
       <Gallery />
 
-      {/* Contact Section */}
+     {/* Contact Section */}
       <div id="contact" className="bg-gray-50 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="lg:flex lg:items-center lg:justify-between">
@@ -83,22 +83,25 @@ function App() {
               <h2 className="text-3xl font-bold text-gray-900">
                 Entre em Contato
               </h2>
-              <div className="mt-8 space-y-6">
-                <ContactInfo
-                  icon={<MapPin />}
-                  text="Rua João Arantes, 341 - Cidade Nova, Belo Horizonte, Brasil"
-                />
-                <ContactInfo icon={<Phone />} text="(31) 9530-6014" />
-                <ContactInfo icon={<Clock />} text="Seg-Sex: 9h às 18h" />
-                <ContactInfo icon={<Clock />} text="Sab: 9h às 12h" />
-              </div>
-            </div>
-            <div className="mt-10 lg:mt-0 lg:w-1/2">
-              <FormularioContato />
+            <div className="mt-8 space-y-6">
+              <ContactInfo
+                icon={<MapPin />}
+                text="Rua João Arantes, 341 - Cidade Nova, Belo Horizonte, Brasil"
+              />
+              <ContactInfo icon={<Phone />} text="(31) 9530-6014" />
+              <ContactInfo icon={<Clock />} text="Seg-Sex: 9h às 18h" />
+              <ContactInfo icon={<Clock />} text="Sab: 9h às 12h" />
             </div>
           </div>
-        </div>
+      <div className="mt-10 lg:mt-0 lg:w-1/2">
+        <p className="text-gray-600 mb-6 text-base leading-relaxed">
+          Tem alguma dúvida ou quer agendar um horário? Preencha os campos abaixo e nossa equipe entrará em contato o mais breve possível.
+        </p>
+        <FormularioContato />
       </div>
+    </div>
+  </div>
+</div>
 
       {/* Botão flutuante do WhatsApp */}
       <a

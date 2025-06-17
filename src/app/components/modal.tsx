@@ -1,6 +1,8 @@
+
 import React, { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import { X } from "lucide-react";
 
 interface ModalProps {
   title: string;
@@ -8,6 +10,7 @@ interface ModalProps {
   wpplink: string;
   img: string;
   closeModal: () => void;
+  directToCatalog?: boolean;
 }
 
 const backdropVariants = {
@@ -26,8 +29,8 @@ const modalVariants = {
   exit: { opacity: 0, scale: 0.9, y: "5%" },
 };
 
-const Modal: React.FC<ModalProps> = ({ title, description, closeModal, wpplink, img }) => {
-  const [showCatalog, setShowCatalog] = useState(false);
+const Modal: React.FC<ModalProps> = ({ title, description, closeModal, wpplink, img, directToCatalog }) => {
+  const [showCatalog, setShowCatalog] = useState(directToCatalog || false);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Todos");
 
@@ -60,9 +63,9 @@ const Modal: React.FC<ModalProps> = ({ title, description, closeModal, wpplink, 
     { id: 8, name: "Osso de Cenoura", image: "/catalogo/petshop/ossocenoura.png", available: true, price: "R$ 30,00", category: "Brinquedo", onSale: true },
     { id: 9, name: "Ração de gato", image: "/catalogo/petshop/racaogato.png", available: true, price: "R$ 150,00", category: "Ração", onSale: true },
   ];
-
+  
+  const WHATSAPP_NUMBER = "553195306014";
   const currentItems = isPharmacy ? pharmacyItems : petShopItems;
-
   const categories = ["Todos", ...Array.from(new Set(currentItems.map(i => i.category))), "Desconto"];
 
   const filteredItems = currentItems.filter((item) => {
@@ -77,7 +80,7 @@ const Modal: React.FC<ModalProps> = ({ title, description, closeModal, wpplink, 
   return (
     <AnimatePresence>
       <motion.div
-        className="fixed inset-0 bg-gray-900 bg-opacity-40 backdrop-blur-sm flex justify-center items-center z-50"
+        className="fixed inset-0 bg-gray-900 bg-opacity-40 backdrop-blur-sm flex justify-center items-center z-50 p-4"
         variants={backdropVariants}
         initial="hidden"
         animate="visible"
@@ -85,12 +88,16 @@ const Modal: React.FC<ModalProps> = ({ title, description, closeModal, wpplink, 
         onClick={handleBackdropClick}
       >
         <motion.div
-          className="bg-gradient-to-br from-white to-purple-50 p-8 rounded-2xl shadow-2xl max-w-md w-full border border-purple-100"
+          className="bg-gradient-to-br from-white to-purple-50 p-6 sm:p-8 rounded-2xl shadow-2xl w-full max-w-lg border border-purple-100 relative"
           variants={modalVariants}
           initial="hidden"
           animate="visible"
           exit="exit"
         >
+           <button onClick={closeModal} className="absolute top-4 right-4 text-gray-400 hover:text-red-500 hover:scale-110 transition-transform z-10">
+              <X size={24} />
+           </button>
+          
           {!showCatalog ? (
             <>
               <h3 className="text-2xl font-bold text-purple-800 mb-4">{title}</h3>
@@ -111,17 +118,18 @@ const Modal: React.FC<ModalProps> = ({ title, description, closeModal, wpplink, 
                   className="rounded-xl border-4 border-purple-300 shadow-xl hover:shadow-purple-400 transition duration-300"
                 />
               </motion.div>
-              <div className="flex flex-wrap gap-3 mt-6">
+              <div className="flex flex-wrap items-center justify-start gap-4 mt-6">
                 {wpplink && (
-                  <a href={wpplink} target="_blank" rel="noopener noreferrer">
-                    <button className="bg-green-500 hover:bg-green-600 transition px-4 py-2 rounded-lg text-white shadow-md">
+                  <a href={wpplink} target="_blank" rel="noopener noreferrer" className="w-full">
+                    <motion.button
+                      className="relative w-full py-3 text-white text-lg font-semibold rounded-xl bg-gradient-to-r from-green-500 via-green-400 to-green-600 transition-transform duration-300 shadow-lg overflow-hidden"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
                       Entre em Contato
-                    </button>
+                    </motion.button>
                   </a>
                 )}
-                <button onClick={closeModal} className="bg-gray-300 hover:bg-gray-400 transition px-4 py-2 rounded-lg text-gray-800 shadow-sm">
-                  Fechar
-                </button>
                 {(isPharmacy || isPetShop) && (
                   <button
                     onClick={() => setShowCatalog(true)}
@@ -148,62 +156,65 @@ const Modal: React.FC<ModalProps> = ({ title, description, closeModal, wpplink, 
                     key={cat}
                     onClick={() => setSelectedCategory(cat)}
                     className={`px-3 py-1 rounded-full text-sm font-medium border ${
-  selectedCategory === cat
-    ? "bg-purple-600 text-white"
-    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                      selectedCategory === cat
+                        ? "bg-purple-600 text-white"
+                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                     }`}
                   >
                     {cat}
                   </button>
                 ))}
               </div>
-              <div className="grid grid-cols-2 gap-4 max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-purple-300 scrollbar-track-transparent pr-2">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-purple-300 scrollbar-track-transparent pr-2">
                 {filteredItems.length > 0 ? (
-                  filteredItems.map((item) => (
-                <motion.div
-                  key={item.id}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="relative flex flex-col items-center border p-3 rounded-xl bg-white shadow-md hover:shadow-lg transition duration-300"
-                >
-                <Image
-                  src={item.image}
-                  alt={item.name}
-                  width={100}
-                  height={100}
-                  className={`object-contain h-[90px] ${!item.available ? "opacity-50" : ""}`}
-                />
-
-                {item.onSale && (
-                  <span className="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full font-bold shadow-md">
-                    Promoção
-                  </span>
-                )}
-
-                {item.onSale ? (
-                  <span className="text-green-600 font-semibold text-sm mt-2">{item.price}</span>
+                  filteredItems.map((item) => {
+                    const ProductCard = (
+                       <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="relative flex flex-col items-center border p-3 rounded-xl bg-white shadow-md h-full"
+                        >
+                          <Image
+                            src={item.image}
+                            alt={item.name}
+                            width={100}
+                            height={100}
+                            className={`object-contain h-[90px] ${!item.available ? "opacity-50" : ""}`}
+                          />
+                           {item.onSale && (
+                            <span className="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full font-bold shadow-md">
+                              Promoção
+                            </span>
+                          )}
+                           <span className="text-gray-800 font-medium text-sm mt-2">{item.price}</span>
+                          <p className="text-sm text-gray-700 text-center mt-1 flex-grow">{item.name}</p>
+                           {!item.available && (
+                            <span className="text-red-500 text-xs font-bold mt-1">Indisponível</span>
+                          )}
+                        </motion.div>
+                    );
+                    
+                    if (item.available) {
+                      const wppMessage = `Olá! Tenho interesse no produto: ${item.name}.`;
+                      const wppLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(wppMessage)}`;
+                      return (
+                        <a href={wppLink} target="_blank" rel="noopener noreferrer" key={item.id} className="hover:scale-105 transition-transform duration-300 block">
+                          {ProductCard}
+                        </a>
+                      )
+                    } else {
+                      return (
+                        <div key={item.id} className="cursor-not-allowed">
+                          {ProductCard}
+                        </div>
+                      )
+                    }
+                  })
                 ) : (
-                  <span className="text-gray-800 font-medium text-sm mt-2">{item.price}</span>
+                  <p className="text-center text-gray-500 col-span-2 sm:col-span-3">Produto não encontrado.</p>
                 )}
-
-                <p className="text-sm text-gray-700 text-center mt-1">{item.name}</p>
-
-                {!item.available && (
-                  <span className="text-red-500 text-xs font-bold mt-1">Indisponível</span>
-                )}
-              </motion.div>
-            ))
-          ) : (
-            <p className="text-center text-gray-500 col-span-2">Produto não encontrado.</p>
-          )}
-        </div>
-              <button
-                onClick={() => setShowCatalog(false)}
-                className="bg-purple-600 hover:bg-purple-700 transition px-4 py-2 rounded-lg text-white mt-4 shadow-md"
-              >
-                Voltar
-              </button>
+              </div>
             </>
           )}
         </motion.div>
