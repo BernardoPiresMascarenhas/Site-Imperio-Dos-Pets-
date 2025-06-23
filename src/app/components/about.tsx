@@ -1,12 +1,12 @@
 "use client";
 
-import BotaoTireDuvidas from "@/app/components/BotaoTireDuvidas";
+
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Scissors, HeartPulse } from "lucide-react";
 
 
-import { FaStethoscope, FaSyringe, FaMicroscope, FaCut, FaShoppingCart, FaPaw } from 'react-icons/fa';
+import { FaStethoscope, FaSyringe, FaMicroscope, FaShoppingCart} from 'react-icons/fa';
 
 const AboutUs = () => {
   

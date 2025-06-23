@@ -1,7 +1,6 @@
-// services.tsx ATUALIZADO
 
 import React, { useState } from "react";
-import { Scissors, Syringe, Stethoscope, Bath, HeartPulse, BriefcaseMedical } from "lucide-react";
+import { Scissors, Syringe, Stethoscope, HeartPulse, BriefcaseMedical } from "lucide-react";
 import Modal from "./modal";
 import ServiceCard from "./ServiceCard";
 import { FaShoppingCart } from 'react-icons/fa';
@@ -13,11 +12,11 @@ const Services = () => {
     description: string;
     wpplink: string;
     img: string;
-    directToCatalog?: boolean; // MUDANÇA: Adicionado novo campo opcional
+    directToCatalog?: boolean; 
   } | null>(null);
 
   const openModal = (title: string, description: string, wpplink: string, img: string, directToCatalog?: boolean) => {
-    // MUDANÇA: Função agora aceita o novo parâmetro
+    
     setModalContent({ title, description, wpplink, img, directToCatalog });
     setIsModalOpen(true);
   };
