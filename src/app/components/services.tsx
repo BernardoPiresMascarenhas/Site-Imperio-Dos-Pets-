@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Scissors, Syringe, Stethoscope, Bath, HeartPulse, BriefcaseMedical } from "lucide-react";
 import Modal from "./modal";
 import ServiceCard from "./ServiceCard";
+import { FaShoppingCart } from 'react-icons/fa';
 
 const Services = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -70,7 +71,7 @@ const Services = () => {
           />
           {/* MUDANÇA: Adicionado directToCatalog={true} abaixo */}
           <ServiceCard
-            icon={<Bath className="h-10 w-10 text-teal-500" />}
+            icon={<FaShoppingCart className="h-10 w-10 text-teal-500" />}
             title="Pet Shop"
             description="Produtos e acessórios para seu pet com muito amor e qualidade."
             openModal={openModal}
