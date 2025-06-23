@@ -81,7 +81,7 @@ const AboutUs = () => {
               transition={{ delay: 0.2, duration: 0.6 }}
               viewport={{ once: true }}
             >
-              Na Império dos Pets, temos mais de 5 anos de dedicação ao cuidado e à saúde dos animais. Nossa missão vai além de oferecer serviços veterinários — buscamos promover qualidade de vida e bem-estar para cada pet que passa por aqui.
+              A Império dos Pets possui mais de 5 anos de dedicação ao cuidado e à saúde dos animais. Nossa missão vai além de oferecer serviços veterinários — buscamos promover qualidade de vida e bem-estar para cada pet que passa por aqui.
             </motion.p>
 
             {/* Seção da lista de serviços */}
