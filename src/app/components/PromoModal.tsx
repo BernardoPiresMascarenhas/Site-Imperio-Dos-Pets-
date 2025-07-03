@@ -1,4 +1,3 @@
-
 "use client";
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -13,18 +12,19 @@ const PromoModal = ({ onClose, onWhatsApp }: PromoModalProps) => {
   return (
     <AnimatePresence>
       <motion.div
-        className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm px-4"
+        className="fixed inset-0 z-50 overflow-y-auto bg-black bg-opacity-60 backdrop-blur-sm p-4 pt-40"
+        onClick={onClose}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
       >
-        {/* AJUSTE 1: Diminuí a largura máxima para 'sm' e a altura máxima para 85vh */}
         <motion.div
-          className="relative bg-white rounded-3xl shadow-2xl border border-purple-300 overflow-y-auto max-h-[85vh] w-full max-w-sm p-6"
+          className="relative bg-white rounded-3xl shadow-2xl border border-purple-300 w-full max-w-sm p-6 mx-auto"
           initial={{ y: -40, opacity: 0, scale: 0.95 }}
           animate={{ y: 0, opacity: 1, scale: 1 }}
           exit={{ y: 40, opacity: 0, scale: 0.9 }}
           transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          onClick={(e) => e.stopPropagation()}
         >
           {/* Botão de fechar */}
           <button
@@ -44,21 +44,19 @@ const PromoModal = ({ onClose, onWhatsApp }: PromoModalProps) => {
             🎉 Promoção Especial! 🎉
           </motion.h2>
 
-          {/* eslint-disable-next-line @next/next/no-img-element */}
+          {/* Imagem */}
           <motion.div
             className="flex justify-center"
             initial={{ scale: 0.9, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            viewport={{ once: true }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
           >
-            <motion.img
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src="/promocao.png"
               alt="Promoção"
-              // AJUSTE 2: Diminuí a altura máxima da imagem para 45vh
-              className="rounded-2xl shadow-xl border-4 border-purple-200 transition duration-300 w-auto max-h-[45vh]"
-              whileHover={{ scale: 1.05 }}
-              />
+              className="rounded-2xl shadow-xl border-4 border-purple-200 w-full"
+            />
           </motion.div>
 
           {/* Botão WhatsApp */}
