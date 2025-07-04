@@ -11,7 +11,7 @@ import Image from 'next/image';
 
 import FormularioContato from "@/app/components/FormularioContato";
 import PromoModal from "./components/PromoModal"; 
-import { InstagramLogo, TiktokLogo, ThreadsLogo, List, X } from "@phosphor-icons/react";
+import { InstagramLogo, TiktokLogo, ThreadsLogo } from "@phosphor-icons/react";
 
 const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
         e.preventDefault();
