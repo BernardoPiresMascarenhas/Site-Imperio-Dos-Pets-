@@ -37,9 +37,46 @@ body {
   transform: translateY(-50%);
 }
 
-/* Estiliza as setas: cor roxa e tamanho menor */
-.swiper-button-next::after,
-.swiper-button-prev::after {
-  font-size: 20px;
-  color: #007AFF !important; /* ← Aqui define a cor da seta */
+/* === ESTILO DOS BOTÕES DO CARROSSEL DA GALERIA === */
+.gallery-swiper-button-next,
+.gallery-swiper-button-prev {
+  position: absolute;
+  top: 50%;
+  /* Ajuste para centralizar verticalmente no meio da imagem */
+  transform: translateY(-calc(50% + 20px)); /* O +20px é para subir um pouco, ajuste se necessário */
+  z-index: 20;
+  cursor: pointer;
+  width: 50px;
+  height: 55px;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
+  color: white; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+/* Efeito de hover */
+.gallery-swiper-button-prev:hover,
+.gallery-swiper-button-next:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* Posicionamento dos botões da GALERIA */
+.gallery-swiper-button-prev {
+  left: -1.5rem; /* Distância da esquerda */
+}
+.gallery-swiper-button-next {
+  right: -1.5rem; /* Distância da direita */
+}
+
+/* Ajuste para a paginação (bolinhas) se necessário */
+.custom-pagination .swiper-pagination-bullet {
+  background: #a855f7; /* Cor roxa para combinar */
+  opacity: 0.5;
+}
+
+.custom-pagination .swiper-pagination-bullet-active {
+  opacity: 1;
 }
