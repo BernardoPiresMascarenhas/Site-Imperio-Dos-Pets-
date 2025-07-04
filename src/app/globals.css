@@ -65,10 +65,10 @@ body {
 
 /* Posicionamento dos botões da GALERIA */
 .gallery-swiper-button-prev {
-  left: -1.5rem; /* Distância da esquerda */
+  left: -0.7rem; /* Distância da esquerda */
 }
 .gallery-swiper-button-next {
-  right: -1.5rem; /* Distância da direita */
+  right: -0.7rem; /* Distância da direita */
 }
 
 /* Ajuste para a paginação (bolinhas) se necessário */
