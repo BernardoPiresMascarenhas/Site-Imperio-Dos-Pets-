@@ -128,7 +128,7 @@ const Modal: React.FC<ModalProps> = ({
   ];
   const WHATSAPP_NUMBER = "553195306014";
 
-  const currentItems = title === "Farmácia Pet" ? pharmacyItems : petShopItems;
+  const currentItems = isPharmacy ? pharmacyItems : petShopItems;
   const categories = ["Todos", ...Array.from(new Set(currentItems.map(i => i.category))), "Desconto"];
   const filteredItems = currentItems.filter((item) => {
     const matchSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase());
@@ -214,7 +214,6 @@ const Modal: React.FC<ModalProps> = ({
           </button>
           
           {!showCatalog && !showCart && (
-            //(tela inicial)
             <>
               <h3 className="text-2xl font-bold text-purple-800 mb-4">{title}</h3>
               <p className="text-gray-600 mb-6 leading-relaxed">{description}</p>
@@ -235,7 +234,7 @@ const Modal: React.FC<ModalProps> = ({
                     </motion.button>
                   </a>
                 )}
-                {(title === "Farmácia Pet" || title === "Pet Shop") && (
+                {(isPharmacy || isPetShop) && (
                   <button onClick={() => setShowCatalog(true)} className="bg-purple-600 hover:bg-purple-700 transition w-full py-3 text-white text-lg font-semibold rounded-xl shadow-md">
                     Ver Catálogo
                   </button>
@@ -245,7 +244,6 @@ const Modal: React.FC<ModalProps> = ({
           )}
 
           {showCatalog && !showCart && (
-            //(tela do catálogo)
              <>
               <div className="flex justify-between items-center mb-4 pr-8">
                  <h3 className="text-2xl font-bold text-purple-800">{title}</h3>
@@ -301,7 +299,6 @@ const Modal: React.FC<ModalProps> = ({
           )}
 
           {showCart && (
-             // (tela do carrinho)
              <div className="w-full">
                 <div className="flex items-center mb-4">
                     <button onClick={() => setShowCart(false)} className="p-2 text-gray-500 hover:text-purple-700 mr-2">
@@ -314,20 +311,20 @@ const Modal: React.FC<ModalProps> = ({
                      <div className="space-y-3 max-h-80 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-purple-300 scrollbar-track-transparent">
                         {cartItems.map(item => (
                            <div key={item.id} className="flex items-center justify-between bg-white p-2 rounded-lg border">
-                              <div className="flex items-center gap-3">                                
-                                <div className="relative w-14 h-14 flex-shrink-0 overflow-hidden rounded-md">
-                                    <Image 
-                                        src={item.image} 
-                                        alt={item.name} 
-                                        fill 
-                                        className="object-cover"
-                                    />
-                                </div>
-                                <div>
-                                    <p className="text-sm font-semibold text-gray-800">{item.name}</p>
-                                    <p className="text-xs text-gray-600">{item.price}</p>
-                                </div>
-                            </div>
+                              <div className="flex items-center gap-3">
+                                  <div className="relative w-14 h-14 flex-shrink-0 overflow-hidden rounded-md">
+                                      <Image 
+                                          src={item.image} 
+                                          alt={item.name} 
+                                          fill 
+                                          className="object-cover"
+                                      />
+                                  </div>
+                                  <div>
+                                      <p className="text-sm font-semibold text-gray-800">{item.name}</p>
+                                      <p className="text-xs text-gray-600">{item.price}</p>
+                                  </div>
+                              </div>
                               <div className="flex items-center gap-2">
                                 <button onClick={() => handleUpdateQuantity(item.id, item.quantity - 1)} className="p-1 rounded-full bg-gray-200 hover:bg-gray-300 text-gray-800"><Minus size={14}/></button>
                                 <span className="font-bold w-6 text-center text-gray-900">{item.quantity}</span>
