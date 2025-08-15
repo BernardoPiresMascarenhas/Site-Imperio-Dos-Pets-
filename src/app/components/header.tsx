@@ -1,18 +1,17 @@
 "use client";
 
-import { useState } from 'react'; // 1. Importar o useState
-import { InstagramLogo, TiktokLogo, ThreadsLogo, List, X } from "@phosphor-icons/react"; // 2. Importar ícones para o menu
+import { useState } from 'react';
+import { InstagramLogo, TiktokLogo, ThreadsLogo, List, X } from "@phosphor-icons/react"; 
 import Image from "next/image";
 
 const Header = () => {
-    // 3. Adicionar estado para controlar a visibilidade do menu mobile
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
         e.preventDefault();
         const element = document.getElementById(sectionId);
         if (element) {
-            const headerOffset = 112; // Altura do seu header
+            const headerOffset = 112; 
             const elementPosition = element.getBoundingClientRect().top;
             const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
@@ -21,14 +20,12 @@ const Header = () => {
                 behavior: 'smooth'
             });
         }
-        // Fecha o menu mobile após clicar em um link
         if (isMenuOpen) {
             setIsMenuOpen(false);
         }
     };
 
     return (
-        // A tag <nav> se torna o container relativo para o menu mobile absoluto
         <nav className="bg-gradient-to-br from-white via-purple-100 to-purple-200 shadow-sm sticky top-0 z-50 relative">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-28 items-center">
@@ -75,9 +72,9 @@ const Header = () => {
                             aria-label="Abrir menu"
                         >
                             {isMenuOpen ? (
-                                <X size={32} /> // Ícone de "X" quando o menu está aberto
+                                <X size={32} /> 
                             ) : (
-                                <List size={32} /> // Ícone de "hambúrguer" quando fechado
+                                <List size={32} /> 
                             )}
                         </button>
                     </div>

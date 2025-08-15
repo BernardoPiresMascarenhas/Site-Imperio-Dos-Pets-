@@ -1,11 +1,26 @@
-
 import React, { useState } from "react";
 import { Scissors, Syringe, Stethoscope, HeartPulse, BriefcaseMedical } from "lucide-react";
 import Modal from "./modal";
 import ServiceCard from "./ServiceCard";
 import { FaShoppingCart } from 'react-icons/fa';
 
-const Services = () => {
+interface CartItem {
+  id: number;
+  name: string;
+  image: string;
+  available: boolean;
+  price: string;
+  category: string;
+  onSale: boolean;
+  quantity: number;
+}
+
+interface ServicesProps {
+    cartItems: CartItem[];
+    setCartItems: React.Dispatch<React.SetStateAction<CartItem[]>>;
+}
+
+const Services: React.FC<ServicesProps> = ({ cartItems, setCartItems }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState<{
     title: string;
@@ -16,7 +31,6 @@ const Services = () => {
   } | null>(null);
 
   const openModal = (title: string, description: string, wpplink: string, img: string, directToCatalog?: boolean) => {
-    
     setModalContent({ title, description, wpplink, img, directToCatalog });
     setIsModalOpen(true);
   };
@@ -68,7 +82,6 @@ const Services = () => {
             wpplink="https://wa.me/553195306014?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20os%20Procedimentos%20Cirúrgicos."
             img="/cat3.png"
           />
-          {/* MUDANÇA: Adicionado directToCatalog={true} abaixo */}
           <ServiceCard
             icon={<FaShoppingCart className="h-10 w-10 text-teal-500" />}
             title="Pet Shop"
@@ -78,7 +91,6 @@ const Services = () => {
             img="/cat2.png"
             directToCatalog={true}
           />
-          {/* MUDANÇA: Adicionado directToCatalog={true} abaixo */}
           <ServiceCard
             icon={<BriefcaseMedical className="h-10 w-10 text-green-600" />}
             title="Farmácia Pet"
@@ -98,8 +110,9 @@ const Services = () => {
           wpplink={modalContent.wpplink}
           img={modalContent.img}
           closeModal={closeModal}
-          // MUDANÇA: Passando a nova propriedade para o Modal
           directToCatalog={modalContent.directToCatalog}
+          cartItems={cartItems}
+          setCartItems={setCartItems}
         />
       )}
     </div>

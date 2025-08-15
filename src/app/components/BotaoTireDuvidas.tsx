@@ -7,8 +7,8 @@ export default function BotaoTireDuvidas() {
       target="_blank"
       rel="noopener noreferrer"
       className="bg-purple-600 text-white px-6 py-3 rounded-lg font-medium mt-4 inline-block"
-      whileHover={{ scale: 1.05, backgroundColor: "#6b21a8" }} // aumenta e escurece no hover
-      whileTap={{ scale: 0.95 }} // efeito ao clicar  
+      whileHover={{ scale: 1.05, backgroundColor: "#6b21a8" }} 
+      whileTap={{ scale: 0.95 }} 
     >
       Tire suas dúvidas aqui
     </motion.a>
