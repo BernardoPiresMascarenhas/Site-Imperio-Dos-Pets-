@@ -3,6 +3,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ShoppingCart, Plus, Minus, Trash2, ArrowLeft } from "lucide-react";
 
+
 interface CatalogItem {
   id: number;
   name: string;
@@ -28,7 +29,7 @@ interface ModalProps {
   setCartItems: React.Dispatch<React.SetStateAction<CartItem[]>>;
 }
 
-
+// --- VARIANTES DE ANIMAÇÃO (Framer Motion) ---
 const backdropVariants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1 },
@@ -45,7 +46,7 @@ const modalVariants = {
   exit: { opacity: 0, scale: 0.9, y: "5%" },
 };
 
-
+// --- COMPONENTE PRINCIPAL ---
 const Modal: React.FC<ModalProps> = ({ 
   title, 
   description, 
@@ -56,11 +57,13 @@ const Modal: React.FC<ModalProps> = ({
   cartItems,
   setCartItems
 }) => {
+  // --- ESTADOS LOCAIS ---
   const [showCatalog, setShowCatalog] = useState(directToCatalog || false);
   const [showCart, setShowCart] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Todos");
 
+  // --- DADOS ---
   const isPharmacy = title === "Farmácia Pet";
   const isPetShop = title === "Pet Shop";
   
@@ -128,6 +131,7 @@ const Modal: React.FC<ModalProps> = ({
   ];
   const WHATSAPP_NUMBER = "553195306014";
 
+  // --- LÓGICA DE NEGÓCIO ---
   const currentItems = isPharmacy ? pharmacyItems : petShopItems;
   const categories = ["Todos", ...Array.from(new Set(currentItems.map(i => i.category))), "Desconto"];
   const filteredItems = currentItems.filter((item) => {
@@ -192,6 +196,7 @@ const Modal: React.FC<ModalProps> = ({
     }
   };
 
+
   return (
     <AnimatePresence>
       <motion.div
@@ -214,7 +219,7 @@ const Modal: React.FC<ModalProps> = ({
           </button>
           
           {!showCatalog && !showCart && (
-            <>
+             <>
               <h3 className="text-2xl font-bold text-purple-800 mb-4">{title}</h3>
               <p className="text-gray-600 mb-6 leading-relaxed">{description}</p>
               <motion.div
@@ -256,7 +261,7 @@ const Modal: React.FC<ModalProps> = ({
                     )}
                  </button>
               </div>
-              <input type="text" placeholder="Pesquisar produto..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="w-full p-2 mb-4 border border-purple-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" />
+              <input type="text" placeholder="Pesquisar produto..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="w-full p-2 mb-4 border border-purple-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-900 placeholder-gray-500" />
               <div className="flex gap-2 flex-wrap mb-4">
                 {categories.map((cat) => (
                   <button key={cat} onClick={() => setSelectedCategory(cat)} className={`px-3 py-1 rounded-full text-sm font-medium border ${selectedCategory === cat ? "bg-purple-600 text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}>
@@ -313,6 +318,12 @@ const Modal: React.FC<ModalProps> = ({
                            <div key={item.id} className="flex items-center justify-between bg-white p-2 rounded-lg border">
                               <div className="flex items-center gap-3">
                                   <div className="relative w-14 h-14 flex-shrink-0 overflow-hidden rounded-md">
+                                      {item.onSale && (
+                                          <div
+                                              className="absolute top-0 left-0 w-6 h-6 bg-red-500 z-10"
+                                              style={{ clipPath: 'polygon(0 0, 100% 0, 0 100%)' }}
+                                          ></div>
+                                      )}
                                       <Image 
                                           src={item.image} 
                                           alt={item.name} 
@@ -322,7 +333,9 @@ const Modal: React.FC<ModalProps> = ({
                                   </div>
                                   <div>
                                       <p className="text-sm font-semibold text-gray-800">{item.name}</p>
-                                      <p className="text-xs text-gray-600">{item.price}</p>
+                                      <p className={`text-sm ${item.onSale ? 'text-green-600 font-semibold' : 'text-gray-600'}`}>
+                                          {item.price}
+                                      </p>
                                   </div>
                               </div>
                               <div className="flex items-center gap-2">
