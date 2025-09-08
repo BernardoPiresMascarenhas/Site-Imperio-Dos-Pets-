@@ -10,25 +10,25 @@ import { motion } from "framer-motion";
 const slidesData = [
  
   [
-    { id: 1, src: '/galeria1.png', alt: 'Animal de estimação 1' },
+    { id: 1, src: '/galeria16.png', alt: 'Animal de estimação 1' },
     { id: 2, src: '/galeria2.png', alt: 'Animal de estimação 2' },
-    { id: 3, src: '/galeria3.png', alt: 'Animal de estimação 3' },
-    { id: 4, src: '/galeria4.png', alt: 'Animal de estimação 4' },
-    { id: 5, src: '/galeria5.png', alt: 'Animal de estimação 5' },
-    { id: 6, src: '/galeria6.png', alt: 'Animal de estimação 6' },
+    { id: 3, src: '/galeria12.png', alt: 'Animal de estimação 3' },
+    { id: 4, src: '/galeria9.png', alt: 'Animal de estimação 4' },
+    { id: 5, src: '/galeria10.png', alt: 'Animal de estimação 5' },
+    { id: 6, src: '/galeria11.png', alt: 'Animal de estimação 6' },
     { id: 7, src: '/galeria7.png', alt: 'Animal de estimação 7' },
-    { id: 8, src: '/galeria8.png', alt: 'Animal de estimação 8' },
+    { id: 8, src: '/galeria17.png', alt: 'Animal de estimação 8' },
   ],
-  
+
   [
-    { id: 9, src: '/galeria1.png', alt: 'Animal de estimação 9' },
-    { id: 10, src: '/galeria2.png', alt: 'Animal de estimação 10' },
-    { id: 11, src: '/galeria3.png', alt: 'Animal de estimação 11' },
-    { id: 12, src: '/galeria4.png', alt: 'Animal de estimação 12' },
-    { id: 13, src: '/galeria5.png', alt: 'Animal de estimação 13' },
-    { id: 14, src: '/galeria6.png', alt: 'Animal de estimação 14' },
-    { id: 15, src: '/galeria7.png', alt: 'Animal de estimação 15' },
-    { id: 16, src: '/galeria8.png', alt: 'Animal de estimação 16' },
+    { id: 1, src: '/galeria13.png', alt: 'Animal de estimação 1' },
+    { id: 2, src: '/galeria8.png', alt: 'Animal de estimação 2' },
+    { id: 3, src: '/galeria3.png', alt: 'Animal de estimação 3' },
+    { id: 4, src: '/galeria15.png', alt: 'Animal de estimação 4' },
+    { id: 5, src: '/galeria1.png', alt: 'Animal de estimação 5' },
+    { id: 6, src: '/galeria18.png', alt: 'Animal de estimação 6' },
+    { id: 7, src: '/galeria14.png', alt: 'Animal de estimação 7' },
+    { id: 8, src: '/galeria6.png', alt: 'Animal de estimação 8' },
   ],
   
 ];

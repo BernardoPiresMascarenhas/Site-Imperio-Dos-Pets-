@@ -41,17 +41,27 @@ const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: stri
 };
 
 function App() {
-  const [showPromo, setShowPromo] = useState(false);     
-  const [minimized, setMinimized] = useState(false);     
+
+  const PROMO_START_DATE = new Date('2025-09-01T00:00:00'); 
+  const PROMO_END_DATE = new Date('2025-09-07T23:59:59');
+
+  const now = new Date();
+  const isPromoPeriodActive = now >= PROMO_START_DATE && now <= PROMO_END_DATE;
+
+  const [showPromo, setShowPromo] = useState(false);      
+  const [minimized, setMinimized] = useState(false);      
   const [cartItems, setCartItems] = useState<CartItem[]>([]); 
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowPromo(true); 
-    }, 3000);
+  
+    if (isPromoPeriodActive) {
+      const timer = setTimeout(() => {
+        setShowPromo(true); 
+      }, 3000);
 
-    return () => clearTimeout(timer); 
-  }, []);
+      return () => clearTimeout(timer);
+    }
+  }, [isPromoPeriodActive]); 
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -114,31 +124,52 @@ function App() {
       <AboutUs />
       <Gallery />
       <div id="contact" className="bg-gray-50 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="lg:flex lg:items-center lg:justify-between">
-            <div className="lg:w-1/2">
-              <h2 className="text-3xl font-bold text-gray-900">
-                Entre em Contato
-              </h2>
-              <div className="mt-8 space-y-6">
-                <ContactInfo
-                  icon={<MapPin />}
-                  text="Rua João Arantes, 341 - Cidade Nova, Belo Horizonte, Brasil"
-                />
-                <ContactInfo icon={<Phone />} text="(31) 9530-6014" />
-                <ContactInfo icon={<Clock />} text="Seg-Sex: 9h às 18h" />
-                <ContactInfo icon={<Clock />} text="Sab: 9h às 12h" />
-              </div>
-            </div>
-            <div className="mt-10 lg:mt-0 lg:w-1/2">
-              <p className="text-gray-600 mb-6 text-base leading-relaxed">
-                Tem alguma dúvida ou quer agendar um horário? Preencha os campos abaixo e nossa equipe entrará em contato o mais breve possível.
-              </p>
-              <FormularioContato />
-            </div>
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-start">
+      {/* Coluna da Esquerda: Informações e Mapa */}
+      <div className="space-y-8">
+        <div>
+          <h2 className="text-3xl font-bold text-gray-900">
+            Entre em Contato
+          </h2>      
+
+        {/* NOVO BLOCO DO MAPA */}
+        <div className="mt-10 h-80 w-full overflow-hidden rounded-lg shadow-xl">
+          <iframe
+            className="h-full w-full"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3751.722748197771!2d-43.91007482563063!3d-19.89389973822187!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa699f848601e8b%3A0x6a0a09b3096b78e4!2sR.%20Jo%C3%A3o%20Arantes%2C%20341%20-%20Cidade%20Nova%2C%20Belo%20Horizonte%20-%20MG%2C%2031170-010!5e0!3m2!1spt-BR!2sbr!4v1725830631388!5m2!1spt-BR!2sbr"
+            style={{ border: 0 }}
+            allowFullScreen={true}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Localização da Império dos Pets no Google Maps"
+          ></iframe>
+        </div>
+        {/* FIM DO BLOCO DO MAPA */}
+          <div className="mt-8 space-y-6">
+            <ContactInfo
+              icon={<MapPin />}
+              text="Rua João Arantes, 341 - Cidade Nova, Belo Horizonte, Brasil"
+            />
+            <ContactInfo icon={<Phone />} text="(31) 9530-6014" />
+            <ContactInfo icon={<Clock />} text="Seg-Sex: 9h às 18h" />
+            <ContactInfo icon={<Clock />} text="Sab: 9h às 12h" />
           </div>
         </div>
+        
       </div>
+
+      {/* Coluna da Direita: Formulário */}
+      <div className="mt-10 lg:mt-0">
+        <p className="text-gray-600 mb-6 text-base leading-relaxed">
+          Tem alguma dúvida ou quer agendar um horário? Preencha os campos
+          abaixo e nossa equipe entrará em contato o mais breve possível.
+        </p>
+        <FormularioContato />
+      </div>
+    </div>
+  </div>
+</div>
 
       <footer className="bg-gray-900 text-gray-300">
         <div className="max-w-7xl mx-auto px-6 py-12 lg:px-8">
