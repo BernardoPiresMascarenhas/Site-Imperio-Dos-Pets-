@@ -6,7 +6,7 @@ O site oficial da clínica veterinária e pet shop Império dos Pets, desenvolvi
 
 ---
 
-### ✨ **[Acesse a demonstração ao vivo](https://site-imperio-dos-pets.vercel.app/)** ✨
+### ✨ **[Acesse a demonstração ao vivo](https://www.clinicaimperiodospets.com.br/)** ✨
 
 ---
 
@@ -16,7 +16,9 @@ O site oficial da clínica veterinária e pet shop Império dos Pets, desenvolvi
 
 | Home Page | Seção de Serviços | Catálogo (Modal) |
 | :---: | :---: | :---: |
-| ![Screenshot da Home Page](https://github.com/user-attachments/assets/ebcf8d42-2e06-438e-80f9-b26c72a13ae7) | ![Screenshot da Seção de Serviços](https://github.com/user-attachments/assets/d8c89ff6-56ae-422b-bc29-c43699123fae) | ![Screenshot do Catálogo](https://github.com/user-attachments/assets/ee6bd64e-acd2-4631-881d-c4449e61f6ec) |
+| ![Screenshot da Home Page](https://github.com/user-attachments/assets/ebcf8d42-2e06-438e-80f9-b26c72a13ae7) | ![Screenshot da Seção de Serviços](https://github.com/user-attachments/assets/d8c89ff6-56ae-422b-bc29-c43699123fae) | <img width="1898" height="943" alt="Captura de tela 2025-09-09 155833" src="https://github.com/user-attachments/assets/b442bad6-8876-48af-abf9-66b152a580bc" /> |
+
+
 
 
 ---
