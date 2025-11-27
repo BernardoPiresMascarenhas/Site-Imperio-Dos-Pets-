@@ -12,6 +12,7 @@ interface CartItem {
   price: string;
   category: string;
   onSale: boolean;
+  onNovo: boolean;
   quantity: number;
 }
 
