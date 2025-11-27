@@ -12,6 +12,7 @@ interface CatalogItem {
   price: string;
   category: string;
   onSale: boolean;
+  onNovo: boolean;
 }
 
 interface CartItem extends CatalogItem {
@@ -68,79 +69,88 @@ const Modal: React.FC<ModalProps> = ({
   const isPetShop = title === "Pet Shop";
   
   const pharmacyItems: CatalogItem[] = [
-    { id: 1, name: "Bravecto - 250mg", image: "/catalogo/farmacia/Bravecto250mg.png", available: true, price: "R$ 214,90", category: "Antiparasitários", onSale: false },
-    { id: 2, name: "Bravecto - 112,50mg", image: "/catalogo/farmacia/BravectoCães 112,5mg.png", available: true, price: "R$ 197,90", category: "Antiparasitários", onSale: false },
-    { id: 3, name: "Bravecto - 500mg", image: "/catalogo/farmacia/Bravecto500.png", available: true, price: "R$ 256,00", category: "Antiparasitários", onSale: false },
-    { id: 4, name: "Defenza - 200mg", image: "/catalogo/farmacia/Defenza.png", available: true, price: "R$ 119,90", category: "Antiparasitários", onSale: false },
-    { id: 5, name: "Vermífugo Vetmax Plus", image: "/catalogo/farmacia/Vermífugo Vetmax Plus.png", available: true, price: "R$ 42,90", category: "Vermífugos", onSale: false }, 
-    { id: 6, name: "Simparic - 80mg", image: "/catalogo/farmacia/Simparic80.png", available: true, price: "R$ 139,90", category: "Antiparasitários", onSale: false },
-    { id: 7, name: "Simparic - 40mg", image: "/catalogo/farmacia/Simparic40.png", available: true, price: "R$ 115,00", category: "Antiparasitários", onSale: false },
-    { id: 8, name: "Simparic - 20mg", image: "/catalogo/farmacia/Simparic20.png", available: true, price: "R$ 95,00", category: "Antiparasitários", onSale: false },
-    { id: 9, name: "Simparic - 10mg", image: "/catalogo/farmacia/Simparic10.png", available: true, price: "R$ 89,90", category: "Antiparasitários", onSale: false },
-    { id: 10, name: "Scalibor - Grande", image: "/catalogo/farmacia/Scalibor Grande.png", available: true, price: "R$ 140,00", category: "Antiparasitários", onSale: false },
-    { id: 11, name: "Scalibor - Pequeno e médio", image: "/catalogo/farmacia/Scalibor - Pequeno e médio.png", available: true, price: "R$ 120,00", category: "Antiparasitários", onSale: false },
-    { id: 12, name: "Defendpro - antiparasitário gatos", image: "/catalogo/farmacia/Defendpro - antiparasitário gatos.png", available: true, price: "R$ 25,90", category: "Antiparasitários", onSale: false },
-    { id: 13, name: "Glicopan pet", image: "/catalogo/farmacia/Glicopan pet.png", available: true, price: "R$ 39,90", category: "Suplemento Vitamínico", onSale: false },
-    { id: 14, name: "Hemolitan pet", image: "/catalogo/farmacia/Hemolitan pet.png", available: true, price: "R$ 41,90", category: "Suplemento Vitamínico", onSale: false },
-    { id: 15, name: "Enterex", image: "/catalogo/farmacia/Enterex.png", available: true, price: "R$ 23,90", category: "Anti tóxico", onSale: false }, 
-    { id: 16, name: "Pulvex", image: "/catalogo/farmacia/Pulvex.png", available: true, price: "R$ 49,90", category: "Antiparasitários", onSale: false },
-    { id: 17, name: "Mectal - Gatos", image: "/catalogo/farmacia/Mectal - Gatos.png", available: true, price: "R$ 39,90", category: "Vermífugos", onSale: false },
-    { id: 18, name: "Mectal - Filhotes", image: "/catalogo/farmacia/Mectal - Filhotes.png", available: true, price: "R$ 55,90", category: "Vermífugos", onSale: false },
-    { id: 19, name: "Sarniran", image: "/catalogo/farmacia/Sarniran.png", available: true, price: "R$ 25,90", category: "Antiparasitários", onSale: false },
-    { id: 20, name: "Endogard - 10kg", image: "/catalogo/farmacia/Endogard - 10kg.png", available: true, price: "R$ 55,90", category: "Vermífugos", onSale: false },
-    { id: 21, name: "Compplet Mix", image: "/catalogo/farmacia/comppletmix.png", available: true, price: "R$ 39,90", category: "Suplemento Vitamínico", onSale: false },
+    { id: 1, name: "Bravecto - 250mg", image: "/catalogo/farmacia/Bravecto250mg.png", available: true, price: "R$ 214,90", category: "Antiparasitários", onSale: false, onNovo: false },
+    { id: 2, name: "Bravecto - 112,50mg", image: "/catalogo/farmacia/BravectoCães 112,5mg.png", available: true, price: "R$ 197,90", category: "Antiparasitários", onSale: false, onNovo: false },
+    { id: 3, name: "Bravecto - 500mg", image: "/catalogo/farmacia/Bravecto500.png", available: true, price: "R$ 256,00", category: "Antiparasitários", onSale: false, onNovo: false },
+    { id: 4, name: "Defenza - 200mg", image: "/catalogo/farmacia/Defenza.png", available: true, price: "R$ 119,90", category: "Antiparasitários", onSale: false, onNovo: false },
+    { id: 5, name: "Vermífugo Vetmax Plus", image: "/catalogo/farmacia/Vermífugo Vetmax Plus.png", available: true, price: "R$ 42,90", category: "Vermífugos", onSale: false, onNovo: false }, 
+    { id: 6, name: "Simparic - 80mg", image: "/catalogo/farmacia/Simparic80.png", available: true, price: "R$ 139,90", category: "Antiparasitários", onSale: false, onNovo: false },
+    { id: 7, name: "Simparic - 40mg", image: "/catalogo/farmacia/Simparic40.png", available: true, price: "R$ 115,00", category: "Antiparasitários", onSale: false, onNovo: false },
+    { id: 8, name: "Simparic - 20mg", image: "/catalogo/farmacia/Simparic20.png", available: true, price: "R$ 95,00", category: "Antiparasitários", onSale: false, onNovo: false },
+    { id: 9, name: "Simparic - 10mg", image: "/catalogo/farmacia/Simparic10.png", available: true, price: "R$ 89,90", category: "Antiparasitários", onSale: false, onNovo: false },
+    { id: 10, name: "Scalibor - Grande", image: "/catalogo/farmacia/Scalibor Grande.png", available: true, price: "R$ 140,00", category: "Antiparasitários", onSale: false, onNovo: false },
+    { id: 11, name: "Scalibor - Pequeno e médio", image: "/catalogo/farmacia/Scalibor - Pequeno e médio.png", available: true, price: "R$ 120,00", category: "Antiparasitários", onSale: false, onNovo: false },
+    { id: 12, name: "Defendpro - antiparasitário gatos", image: "/catalogo/farmacia/Defendpro - antiparasitário gatos.png", available: true, price: "R$ 25,90", category: "Antiparasitários", onSale: false, onNovo: false },
+    { id: 13, name: "Glicopan pet", image: "/catalogo/farmacia/Glicopan pet.png", available: true, price: "R$ 39,90", category: "Suplemento Vitamínico", onSale: false, onNovo: false },
+    { id: 14, name: "Hemolitan pet", image: "/catalogo/farmacia/Hemolitan pet.png", available: true, price: "R$ 41,90", category: "Suplemento Vitamínico", onSale: false, onNovo: false },
+    { id: 15, name: "Enterex", image: "/catalogo/farmacia/Enterex.png", available: true, price: "R$ 23,90", category: "Anti tóxico", onSale: false, onNovo: false }, 
+    { id: 16, name: "Pulvex", image: "/catalogo/farmacia/Pulvex.png", available: true, price: "R$ 49,90", category: "Antiparasitários", onSale: false, onNovo: false },
+    { id: 17, name: "Mectal - Gatos", image: "/catalogo/farmacia/Mectal - Gatos.png", available: true, price: "R$ 39,90", category: "Vermífugos", onSale: false, onNovo: false },
+    { id: 18, name: "Mectal - Filhotes", image: "/catalogo/farmacia/Mectal - Filhotes.png", available: true, price: "R$ 55,90", category: "Vermífugos", onSale: false, onNovo: false },
+    { id: 19, name: "Sarniran", image: "/catalogo/farmacia/Sarniran.png", available: true, price: "R$ 25,90", category: "Antiparasitários", onSale: false, onNovo: false },
+    { id: 20, name: "Endogard - 10kg", image: "/catalogo/farmacia/Endogard - 10kg.png", available: true, price: "R$ 55,90", category: "Vermífugos", onSale: false, onNovo: false },
+    { id: 21, name: "Compplet Mix", image: "/catalogo/farmacia/comppletmix.png", available: true, price: "R$ 39,90", category: "Suplemento Vitamínico", onSale: false, onNovo: false },
   ];
   const petShopItems: CatalogItem[] = [
-    { id: 101, name: "Removedor de Cerúmem", image: "/catalogo/petshop/RemovedordeCerúmem.png", available: true, price: "R$ 59,90", category: "Higiene", onSale: false },
-    { id: 102, name: "Kit Otovet", image: "/catalogo/petshop/KitOtovet.png", available: true, price: "R$ 79,90", category: "Higiene", onSale: false },
-    { id: 103, name: "Otovet", image: "/catalogo/petshop/Otovet.png", available: true, price: "R$ 35,90", category: "Higiene", onSale: false },
-    { id: 104, name: "Limpa Orelha", image: "/catalogo/petshop/LimpaOrelhas.png", available: true, price: "R$ 19,90", category: "Higiene", onSale: false },
-    { id: 105, name: "DentaBite", image: "/catalogo/petshop/Dentabite.png", available: true, price: "R$ 3,50", category: "Petisco", onSale: false },
-    { id: 106, name: "Creme Dental", image: "/catalogo/petshop/CremeDental.png", available: true, price: "R$ 17,90", category: "Higiene", onSale: false },
-    { id: 107, name: "Hálito Pet", image: "/catalogo/petshop/HálitoPet.png", available: true, price: "R$ 29,90", category: "Higiene", onSale: false },
-    { id: 108, name: "Educador - Pipi Pode", image: "/catalogo/petshop/EducadorPipiPode.png", available: true, price: "R$ 25,90", category: "Higiene", onSale: false },
-    { id: 109, name: "Educador de Mordidas", image: "/catalogo/petshop/EducadorDeMordidas.png", available: true, price: "R$ 24,90", category: "Higiene", onSale: false },
-    { id: 110, name: "Educador - Pipi não Pode", image: "/catalogo/petshop/EducadorPipiNãoPode.png", available: true, price: "R$ 27,90", category: "Higiene", onSale: false },
-    { id: 111, name: "Banho a seco", image: "/catalogo/petshop/BANHOSECO.png", available: true, price: "R$ 31,90", category: "Higiene", onSale: false },
-    { id: 112, name: "Kit xixi stop", image: "/catalogo/petshop/xixistop.png", available: true, price: "R$ 23,90", category: "Higiene", onSale: false },
-    { id: 113, name: "Luva Mágica", image: "/catalogo/petshop/LuvaMagica.png", available: true, price: "R$ 28,90", category: "Higiene", onSale: false },
-    { id: 114, name: "Limpa lágrimas", image: "/catalogo/petshop/LIMPALAGRIMAS.png", available: true, price: "R$ 31,90", category: "Higiene", onSale: false },
-    { id: 115, name: "Limpa dobrinhas", image: "/catalogo/petshop/LIMPADOBRINHA.png", available: true, price: "R$ 25,90", category: "Higiene", onSale: false },
-    { id: 116, name: "Limpa carinha", image: "/catalogo/petshop/LIMPACARINHA.png", available: true, price: "R$ 39,90", category: "Higiene", onSale: false },
-    { id: 117, name: "Canelone", image: "/catalogo/petshop/SnacksmastigáveisCanelone.png", available: true, price: "R$ 29,90", category: "Petisco", onSale: false },
-    { id: 118, name: "Snacks de Osso", image: "/catalogo/petshop/SnacksmastigáveisOsso.png", available: true, price: "R$ 21,90", category: "Petisco", onSale: false },
-    { id: 119, name: "Trança bovina", image: "/catalogo/petshop/SnacksmastigáveisTrançaBovina.png", available: true, price: "R$ 31,90", category: "Petisco", onSale: false },
-    { id: 120, name: "Biscoito Doogs", image: "/catalogo/petshop/BiscoitoDoogs.png", available: true, price: "R$ 12,90", category: "Petisco", onSale: false },
-    { id: 121, name: "Doogs Dental Care", image: "/catalogo/petshop/DentalCare.png", available: true, price: "R$ 26,90", category: "Petisco", onSale: false },
-    { id: 122, name: "Bifinhos", image: "/catalogo/petshop/Bifinhos.png", available: true, price: "R$ 3,90", category: "Petisco", onSale: false },
-    { id: 123, name: "Casco Bovino", image: "/catalogo/petshop/CascoBovino.png", available: true, price: "R$ 25,90", category: "Petisco", onSale: false },
-    { id: 124, name: "Chifre Bovino", image: "/catalogo/petshop/ChifreBovino.png", available: true, price: "R$ 17,90", category: "Petisco", onSale: false },
-    { id: 125, name: "Nuggets Caats", image: "/catalogo/petshop/NuggetsCaats.png", available: true, price: "R$ 8,90", category: "Petisco", onSale: false },
-    { id: 126, name: "Orelha Bovina", image: "/catalogo/petshop/OrelhaBovina.png", available: true, price: "R$ 9,90", category: "Petisco", onSale: false },
-    { id: 127, name: "Bola Mágica", image: "/catalogo/petshop/BolaMagica.png", available: true, price: "R$ 59,90", category: "Brinquedos", onSale: false },
-    { id: 128, name: "Bolinha com guizo", image: "/catalogo/petshop/BolinhascomGuizo.png", available: true, price: "R$ 2,50", category: "Brinquedos", onSale: false },
-    { id: 129, name: "Ratinho", image: "/catalogo/petshop/ratinho.png", available: true, price: "R$ 6,90", category: "Brinquedos", onSale: false },
-    { id: 130, name: "Bola Lisa", image: "/catalogo/petshop/BolaLisa.png", available: true, price: "R$ 39,90", category: "Brinquedos", onSale: false },
-    { id: 131, name: "Graveto Nylon", image: "/catalogo/petshop/Graveto.png", available: true, price: "R$ 33,90", category: "Brinquedos", onSale: false },
-    { id: 132, name: "Bola Maluca", image: "/catalogo/petshop/BolaMaluca.png", available: true, price: "R$ 39,90", category: "Brinquedos", onSale: false },
-    { id: 133, name: "Alimentador Pet", image: "/catalogo/petshop/AlimentadorPet.png", available: true, price: "R$ 98,00", category: "Acessórios", onSale: false },
-    { id: 134, name: "Cortador de unha", image: "/catalogo/petshop/Cortadordeunha.png", available: true, price: "R$ 32,90", category: "Higiene", onSale: false },
-    { id: 135, name: "Cata Caca", image: "/catalogo/petshop/CataCaca.png", available: true, price: "R$ 9,90", category: "Higiene", onSale: false },
-    { id: 136, name: "Denta Bone", image: "/catalogo/petshop/DentalBone.png", available: true, price: "R$ 11,90", category: "Brinquedos", onSale: false },
-    { id: 137, name: "Pazinha", image: "/catalogo/petshop/Pazinha.png", available: true, price: "R$ 6,90", category: "Higiene", onSale: false },
+    { id: 101, name: "Removedor de Cerúmem", image: "/catalogo/petshop/RemovedordeCerúmem.png", available: true, price: "R$ 59,90", category: "Higiene", onSale: false, onNovo: false },
+    { id: 102, name: "Kit Otovet", image: "/catalogo/petshop/KitOtovet.png", available: true, price: "R$ 79,90", category: "Higiene", onSale: false, onNovo: false },
+    { id: 103, name: "Otovet", image: "/catalogo/petshop/Otovet.png", available: true, price: "R$ 35,90", category: "Higiene", onSale: false, onNovo: false },
+    { id: 104, name: "Limpa Orelha", image: "/catalogo/petshop/LimpaOrelhas.png", available: true, price: "R$ 19,90", category: "Higiene", onSale: false, onNovo: false },
+    { id: 105, name: "DentaBite", image: "/catalogo/petshop/Dentabite.png", available: true, price: "R$ 3,50", category: "Petisco", onSale: false, onNovo: false },
+    { id: 106, name: "Creme Dental", image: "/catalogo/petshop/CremeDental.png", available: true, price: "R$ 17,90", category: "Higiene", onSale: false, onNovo: false },
+    { id: 107, name: "Hálito Pet", image: "/catalogo/petshop/HálitoPet.png", available: true, price: "R$ 29,90", category: "Higiene", onSale: false, onNovo: false },
+    { id: 108, name: "Educador - Pipi Pode", image: "/catalogo/petshop/EducadorPipiPode.png", available: true, price: "R$ 25,90", category: "Higiene", onSale: false, onNovo: false },
+    { id: 109, name: "Educador de Mordidas", image: "/catalogo/petshop/EducadorDeMordidas.png", available: true, price: "R$ 24,90", category: "Higiene", onSale: false, onNovo: false },
+    { id: 110, name: "Educador - Pipi não Pode", image: "/catalogo/petshop/EducadorPipiNãoPode.png", available: true, price: "R$ 27,90", category: "Higiene", onSale: false, onNovo: false },
+    { id: 111, name: "Banho a seco", image: "/catalogo/petshop/BANHOSECO.png", available: true, price: "R$ 31,90", category: "Higiene", onSale: false, onNovo: false },
+    { id: 112, name: "Kit xixi stop", image: "/catalogo/petshop/xixistop.png", available: true, price: "R$ 23,90", category: "Higiene", onSale: false, onNovo: false },
+    { id: 113, name: "Luva Mágica", image: "/catalogo/petshop/LuvaMagica.png", available: true, price: "R$ 28,90", category: "Higiene", onSale: false, onNovo: false },
+    { id: 114, name: "Limpa lágrimas", image: "/catalogo/petshop/LIMPALAGRIMAS.png", available: true, price: "R$ 31,90", category: "Higiene", onSale: false, onNovo: false },
+    { id: 115, name: "Limpa dobrinhas", image: "/catalogo/petshop/LIMPADOBRINHA.png", available: true, price: "R$ 25,90", category: "Higiene", onSale: false, onNovo: false },
+    { id: 116, name: "Limpa carinha", image: "/catalogo/petshop/LIMPACARINHA.png", available: true, price: "R$ 39,90", category: "Higiene", onSale: false, onNovo: false },
+    { id: 117, name: "Canelone", image: "/catalogo/petshop/SnacksmastigáveisCanelone.png", available: true, price: "R$ 29,90", category: "Petisco", onSale: false, onNovo: false },
+    { id: 118, name: "Snacks de Osso", image: "/catalogo/petshop/SnacksmastigáveisOsso.png", available: true, price: "R$ 21,90", category: "Petisco", onSale: false, onNovo: false },
+    { id: 119, name: "Trança bovina", image: "/catalogo/petshop/SnacksmastigáveisTrançaBovina.png", available: true, price: "R$ 31,90", category: "Petisco", onSale: false, onNovo: false },
+    { id: 120, name: "Biscoito Doogs", image: "/catalogo/petshop/BiscoitoDoogs.png", available: true, price: "R$ 12,90", category: "Petisco", onSale: false, onNovo: false },
+    { id: 121, name: "Doogs Dental Care", image: "/catalogo/petshop/DentalCare.png", available: true, price: "R$ 26,90", category: "Petisco", onSale: false, onNovo: false },
+    { id: 122, name: "Bifinhos", image: "/catalogo/petshop/Bifinhos.png", available: true, price: "R$ 3,90", category: "Petisco", onSale: false, onNovo: false },
+    { id: 123, name: "Casco Bovino", image: "/catalogo/petshop/CascoBovino.png", available: true, price: "R$ 25,90", category: "Petisco", onSale: false, onNovo: false },
+    { id: 124, name: "Chifre Bovino", image: "/catalogo/petshop/ChifreBovino.png", available: true, price: "R$ 17,90", category: "Petisco", onSale: false, onNovo: false },
+    { id: 125, name: "Nuggets Caats", image: "/catalogo/petshop/NuggetsCaats.png", available: true, price: "R$ 8,90", category: "Petisco", onSale: false, onNovo: false },
+    { id: 126, name: "Orelha Bovina", image: "/catalogo/petshop/OrelhaBovina.png", available: true, price: "R$ 9,90", category: "Petisco", onSale: false, onNovo: false },
+    { id: 127, name: "Bola Mágica", image: "/catalogo/petshop/BolaMagica.png", available: true, price: "R$ 59,90", category: "Brinquedos", onSale: false, onNovo: false },
+    { id: 128, name: "Bolinha com guizo", image: "/catalogo/petshop/BolinhascomGuizo.png", available: true, price: "R$ 2,50", category: "Brinquedos", onSale: false, onNovo: false },
+    { id: 129, name: "Ratinho", image: "/catalogo/petshop/ratinho.png", available: true, price: "R$ 6,90", category: "Brinquedos", onSale: false, onNovo: false },
+    { id: 130, name: "Bola Lisa", image: "/catalogo/petshop/BolaLisa.png", available: true, price: "R$ 39,90", category: "Brinquedos", onSale: false, onNovo: false },
+    { id: 131, name: "Graveto Nylon", image: "/catalogo/petshop/Graveto.png", available: true, price: "R$ 33,90", category: "Brinquedos", onSale: false, onNovo: false },
+    { id: 132, name: "Bola Maluca", image: "/catalogo/petshop/BolaMaluca.png", available: true, price: "R$ 39,90", category: "Brinquedos", onSale: false, onNovo: false },
+    { id: 133, name: "Alimentador Pet", image: "/catalogo/petshop/AlimentadorPet.png", available: true, price: "R$ 98,00", category: "Acessórios", onSale: false, onNovo: false },
+    { id: 134, name: "Cortador de unha", image: "/catalogo/petshop/Cortadordeunha.png", available: true, price: "R$ 32,90", category: "Higiene", onSale: false, onNovo: false },
+    { id: 135, name: "Cata Caca", image: "/catalogo/petshop/CataCaca.png", available: true, price: "R$ 9,90", category: "Higiene", onSale: false, onNovo: false },
+    { id: 136, name: "Denta Bone", image: "/catalogo/petshop/DentalBone.png", available: true, price: "R$ 11,90", category: "Brinquedos", onSale: false, onNovo: false },
+    { id: 137, name: "Pazinha", image: "/catalogo/petshop/Pazinha.png", available: true, price: "R$ 6,90", category: "Higiene", onSale: false, onNovo: false },
+    { id: 138, name: "Protein Bar", image: "/catalogo/petshop/ProteinBar.png", available: true, price: "R$ 9,90", category: "Petisco", onSale: false, onNovo: true },
   ];
   const WHATSAPP_NUMBER = "553195306014";
 
   // --- LÓGICA DE NEGÓCIO ---
   const currentItems = isPharmacy ? pharmacyItems : petShopItems;
-  const categories = ["Todos", ...Array.from(new Set(currentItems.map(i => i.category))), "Desconto"];
+  const categories = ["Todos", ...Array.from(new Set(currentItems.map(i => i.category))), "Desconto", "Novidade"];
+  
   const filteredItems = currentItems.filter((item) => {
     const matchSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase());
     const matchCategory =
       selectedCategory === "Todos" ||
       (selectedCategory === "Desconto" && item.onSale) ||
+      (selectedCategory === "Novidade" && item.onNovo) || 
       item.category === selectedCategory;
     return matchSearch && matchCategory;
+  })
+  
+  .sort((a, b) => {
+      if (a.onNovo && !b.onNovo) return -1;
+      if (!a.onNovo && b.onNovo) return 1;
+      return 0;
   });
 
   const handleAddToCart = (product: CatalogItem) => {
@@ -282,6 +292,7 @@ const Modal: React.FC<ModalProps> = ({
                       <div>
                         <Image src={item.image} alt={item.name} width={100} height={100} className={`object-contain mx-auto h-[90px] ${!item.available ? "opacity-50" : ""}`} />
                         {item.onSale && <span className="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full font-bold shadow-md">Promoção</span>}
+                        {item.onNovo && <span className="absolute top-2 right-2 bg-blue-500 text-white text-xs px-2 py-1 rounded-full font-bold shadow-md">Novidade</span>}
                         <p className="text-sm text-gray-700 text-center mt-1 font-semibold">{item.name}</p>
                       </div>
                       <div className="mt-2 text-center">
@@ -313,7 +324,7 @@ const Modal: React.FC<ModalProps> = ({
                 </div>
                 {cartItems.length > 0 ? (
                    <>
-                     <div className="space-y-3 max-h-80 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-purple-300 scrollbar-track-transparent">
+                      <div className="space-y-3 max-h-80 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-purple-300 scrollbar-track-transparent">
                         {cartItems.map(item => (
                            <div key={item.id} className="flex items-center justify-between bg-white p-2 rounded-lg border">
                               <div className="flex items-center gap-3">
@@ -346,8 +357,8 @@ const Modal: React.FC<ModalProps> = ({
                               </div>
                            </div>
                         ))}
-                     </div>
-                     <div className="mt-6 border-t pt-4">
+                      </div>
+                      <div className="mt-6 border-t pt-4">
                         <div className="flex justify-between items-center text-lg font-bold">
                            <span className="text-gray-700">Total:</span>
                            <span className="text-purple-800">{totalPrice}</span>
@@ -357,7 +368,7 @@ const Modal: React.FC<ModalProps> = ({
                                 Finalizar Pedido no WhatsApp
                             </motion.button>
                         </a>
-                     </div>
+                      </div>
                    </>
                 ) : (
                     <div className="text-center py-10">
