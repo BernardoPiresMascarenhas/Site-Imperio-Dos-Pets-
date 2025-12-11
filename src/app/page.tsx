@@ -7,6 +7,7 @@ import Hero from "./components/hero";
 import Services from "./components/services";
 import AboutUs from "./components/about";
 import Gallery from "./components/gallery";
+import Testimonials from "./components/Testimonials";
 import Image from 'next/image';
 
 import FormularioContato from "@/app/components/FormularioContato";
@@ -123,6 +124,7 @@ function App() {
       <Services cartItems={cartItems} setCartItems={setCartItems} />
 
       <AboutUs />
+      <Testimonials />
       <Gallery />
       <div id="contact" className="bg-gray-50 py-16">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -197,7 +199,9 @@ function App() {
               <ul className="space-y-2">
                 <li><a href="#home" onClick={(e) => scrollToSection(e, "home")} className="hover:text-purple-400 transition-colors">Home</a></li>
                 <li><a href="#services" onClick={(e) => scrollToSection(e, "services")} className="hover:text-purple-400 transition-colors">Serviços</a></li>
-                <li><a href="#about" onClick={(e) => scrollToSection(e, "about")} className="hover:text-purple-400 transition-colors">Sobre Nós</a></li>
+                <li><a href="#about" onClick={(e) => scrollToSection(e, "about")} className="hover:text-purple-400 transition-colors">Sobre</a></li>
+                <li><a href="#depoimentos" onClick={(e) => scrollToSection(e, "depoimentos")} className="hover:text-purple-400 transition-colors">Depoimentos</a></li>
+                <li><a href="#gallery" onClick={(e) => scrollToSection(e, "gallery")} className="hover:text-purple-400 transition-colors">Galeria</a></li>
                 <li><a href="#contact" onClick={(e) => scrollToSection(e, "contact")} className="hover:text-purple-400 transition-colors">Contato</a></li>
               </ul>
             </div>

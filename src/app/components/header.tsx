@@ -51,6 +51,7 @@ const Header = () => {
                         <a href="#home" onClick={(e) => scrollToSection(e, "home")} className="text-gray-700 hover:text-purple-600">Home</a>
                         <a href="#services" onClick={(e) => scrollToSection(e, "services")} className="text-gray-700 hover:text-purple-600">Serviços</a>
                         <a href="#about" onClick={(e) => scrollToSection(e, "about")} className="text-gray-700 hover:text-purple-600">Sobre</a>
+                        <a href="#depoimentos" onClick={(e) => scrollToSection(e, "depoimentos")} className="text-gray-700 hover:text-purple-600">Depoimentos</a>
                         <a href="#gallery" onClick={(e) => scrollToSection(e, "gallery")} className="text-gray-600 hover:text-purple-600 transition-colors">Galeria</a>
                         <a href="#contact" onClick={(e) => scrollToSection(e, "contact")} className="text-gray-700 hover:text-purple-600">Contato</a>
                         <a href="https://www.instagram.com/clinicaimperiodospets" target="_blank" rel="noopener noreferrer">
@@ -89,6 +90,7 @@ const Header = () => {
                         <a href="#home" onClick={(e) => scrollToSection(e, "home")} className="text-gray-700 hover:text-purple-600">Home</a>
                         <a href="#services" onClick={(e) => scrollToSection(e, "services")} className="text-gray-700 hover:text-purple-600">Serviços</a>
                         <a href="#about" onClick={(e) => scrollToSection(e, "about")} className="text-gray-700 hover:text-purple-600">Sobre</a>
+                        <a href="#depoimentos" onClick={(e) => scrollToSection(e, "depoimentos")} className="text-gray-700 hover:text-purple-600">Depoimentos</a>
                         <a href="#gallery" onClick={(e) => scrollToSection(e, "gallery")} className="text-gray-600 hover:text-purple-600 transition-colors">Galeria</a>
                         <a href="#contact" onClick={(e) => scrollToSection(e, "contact")} className="text-gray-700 hover:text-purple-600">Contato</a>
                         
