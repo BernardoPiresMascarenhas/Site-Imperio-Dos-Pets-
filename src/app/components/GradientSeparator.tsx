@@ -1,6 +1,6 @@
 const GradientSeparator = () => {
   return (
-    <div className="w-full h-12 bg-gradient-to-br from-white via-purple-100 to-purple-200 shadow-md" />
+    <div className="w-full h-px bg-gradient-to-r from-transparent via-brand-200/60 to-transparent" />
   );
 };
 

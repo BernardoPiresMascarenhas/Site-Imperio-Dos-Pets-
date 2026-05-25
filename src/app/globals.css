@@ -3,80 +3,135 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #FAF7F2;
+  --foreground: #1A1410;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Removido o dark mode automático - o site é light por design */
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Aumenta o espaçamento dos pontinhos abaixo da imagem */
+/* Scrollbar custom */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF7F2;
+}
+::-webkit-scrollbar-thumb {
+  background: #C29ED9;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #7E4BAA;
+}
+
+/* === SWIPER GERAL === */
 .swiper-pagination {
   bottom: -20px !important;
 }
 
-/* Ajusta o espaçamento dos pontinhos de paginação */
-.swiper-pagination {
-  bottom: -20px !important;
-}
-
-/* Centraliza o botão no meio verticalmente */
 .swiper-button-next,
 .swiper-button-prev {
   top: 50%;
   transform: translateY(-50%);
 }
 
-/* === ESTILO DOS BOTÕES DO CARROSSEL DA GALERIA === */
+/* === BOTÕES DO CARROSSEL DA GALERIA === */
 .gallery-swiper-button-next,
 .gallery-swiper-button-prev {
   position: absolute;
   top: 50%;
-  /* Ajuste para centralizar verticalmente no meio da imagem */
-  transform: translateY(-calc(50% + 20px)); /* O +20px é para subir um pouco, ajuste se necessário */
+  transform: translateY(-50%);
   z-index: 20;
   cursor: pointer;
-  width: 50px;
-  height: 55px;
-  background-color: rgba(0, 0, 0, 0.4);
-  border-radius: 50%;
-  color: white; 
+  width: 48px;
+  height: 48px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 9999px;
+  color: #5B2A86;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px -4px rgb(91 42 134 / 0.25);
+  backdrop-filter: blur(8px);
 }
 
-/* Efeito de hover */
 .gallery-swiper-button-prev:hover,
 .gallery-swiper-button-next:hover {
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: #5B2A86;
+  color: white;
+  transform: translateY(-50%) scale(1.08);
 }
 
-/* Posicionamento dos botões da GALERIA */
 .gallery-swiper-button-prev {
-  left: -0.7rem; /* Distância da esquerda */
+  left: -1rem;
 }
 .gallery-swiper-button-next {
-  right: -0.7rem; /* Distância da direita */
+  right: -1rem;
 }
 
-/* Ajuste para a paginação (bolinhas) se necessário */
+/* Paginação custom (bolinhas) */
 .custom-pagination .swiper-pagination-bullet {
-  background: #a855f7; /* Cor roxa para combinar */
-  opacity: 0.5;
+  background: #5B2A86;
+  opacity: 0.3;
+  width: 10px;
+  height: 10px;
+  transition: all 0.3s ease;
 }
 
 .custom-pagination .swiper-pagination-bullet-active {
   opacity: 1;
+  width: 28px;
+  border-radius: 5px;
+}
+
+/* Ondas/divisores decorativos */
+.section-divider-wave {
+  display: block;
+  width: 100%;
+  height: 60px;
+}
+
+/* Reveal on scroll (CSS-only fallback) */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Texto com gradiente */
+.text-gradient-brand {
+  background: linear-gradient(135deg, #5B2A86 0%, #A172C2 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Grão sutil em backgrounds */
+.bg-grain {
+  position: relative;
+}
+.bg-grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.4;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.36 0 0 0 0 0.16 0 0 0 0 0.52 0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
 }

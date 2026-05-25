@@ -1,8 +1,7 @@
-
 "use client";
 
 import React, { useState } from "react";
-import { Loader2 } from "lucide-react";
+import { Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 
 export default function FormularioContato() {
   const [isLoading, setIsLoading] = useState(false);
@@ -16,10 +15,10 @@ export default function FormularioContato() {
 
     const form = e.target as HTMLFormElement;
 
-  const name = (form.elements.namedItem("name") as HTMLInputElement)?.value.trim();
-  const email = (form.elements.namedItem("email") as HTMLInputElement)?.value.trim();
-  const numero = (form.elements.namedItem("numero") as HTMLInputElement)?.value.trim();
-  const message = (form.elements.namedItem("message") as HTMLTextAreaElement)?.value.trim();
+    const name = (form.elements.namedItem("name") as HTMLInputElement)?.value.trim();
+    const email = (form.elements.namedItem("email") as HTMLInputElement)?.value.trim();
+    const numero = (form.elements.namedItem("numero") as HTMLInputElement)?.value.trim();
+    const message = (form.elements.namedItem("message") as HTMLTextAreaElement)?.value.trim();
 
     if (!name || !email || !numero || !message) {
       setErrorMessage("Por favor, preencha todos os campos.");
@@ -39,16 +38,13 @@ export default function FormularioContato() {
       const response = await fetch("/api/agendar", {
         method: "POST",
         body: JSON.stringify(formDataConverted),
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
       });
 
       const result = await response.json();
-      console.log("Result: ", result);
 
       if (result) {
-        setSuccessMessage("Mensagem enviada com sucesso!");
+        setSuccessMessage("Mensagem enviada com sucesso! Entraremos em contato em breve.");
         form.reset();
       } else {
         setErrorMessage("Erro ao enviar. Tente novamente.");
@@ -61,50 +57,85 @@ export default function FormularioContato() {
     }
   };
 
-  return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      {errorMessage && <p className="text-red-600">{errorMessage}</p>}
-      {successMessage && <p className="text-green-600">{successMessage}</p>}
+  const inputClass =
+    "w-full px-4 py-3.5 bg-white border border-cream-300 rounded-xl text-ink-900 placeholder:text-ink-400 focus:outline-none focus:ring-2 focus:ring-brand-300 focus:border-brand-400 transition-all duration-200";
 
-      <input
-        type="text"
-        name="name"
-        placeholder="Nome"
-        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500 text-black"
-      />
-      <input
-        type="email"
-        name="email"
-        placeholder="Email"
-        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500 text-black"
-      />
-      <input
-        type="text"
-        name="numero"
-        placeholder="Telefone de contato"
-        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500 text-black"
-      />
-      <textarea
-        name="message"
-        placeholder="Mensagem"
-        rows={4}
-        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500 text-black"
-      />
+  return (
+    <form onSubmit={handleSubmit} className="space-y-4">
+      {errorMessage && (
+        <div className="flex items-start gap-3 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm">
+          <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
+          <span>{errorMessage}</span>
+        </div>
+      )}
+      {successMessage && (
+        <div className="flex items-start gap-3 p-4 bg-sage-50 border border-sage-200 rounded-xl text-sage-600 text-sm">
+          <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" />
+          <span>{successMessage}</span>
+        </div>
+      )}
+
+      <div className="grid sm:grid-cols-2 gap-4">
+        <div>
+          <label htmlFor="name" className="block text-xs font-semibold text-ink-700 mb-2 uppercase tracking-wider">
+            Nome
+          </label>
+          <input id="name" type="text" name="name" placeholder="Seu nome" className={inputClass} />
+        </div>
+        <div>
+          <label htmlFor="numero" className="block text-xs font-semibold text-ink-700 mb-2 uppercase tracking-wider">
+            Telefone
+          </label>
+          <input id="numero" type="text" name="numero" placeholder="(31) 9 9999-9999" className={inputClass} />
+        </div>
+      </div>
+
+      <div>
+        <label htmlFor="email" className="block text-xs font-semibold text-ink-700 mb-2 uppercase tracking-wider">
+          E-mail
+        </label>
+        <input id="email" type="email" name="email" placeholder="seu@email.com" className={inputClass} />
+      </div>
+
+      <div>
+        <label htmlFor="message" className="block text-xs font-semibold text-ink-700 mb-2 uppercase tracking-wider">
+          Mensagem
+        </label>
+        <textarea
+          id="message"
+          name="message"
+          placeholder="Como podemos ajudar você e seu pet?"
+          rows={5}
+          className={`${inputClass} resize-none`}
+        />
+      </div>
+
       <button
         type="submit"
         disabled={isLoading}
-        className={`w-full ${
-          isLoading ? "bg-gray-400 cursor-not-allowed" : "bg-purple-600"
-        } text-white px-6 py-3 rounded-lg font-medium hover:bg-purple-700 transition-colors`}
+        className={`w-full inline-flex items-center justify-center gap-2 px-7 py-4 text-white font-semibold rounded-full shadow-soft transition-all duration-300 ${
+          isLoading
+            ? "bg-ink-400 cursor-not-allowed"
+            : "bg-brand-600 hover:bg-brand-700 hover:shadow-soft-lg hover:-translate-y-0.5"
+        }`}
       >
         {isLoading ? (
-         <span className="flex items-center justify-center gap-2">
+          <>
             <Loader2 className="h-5 w-5 animate-spin" />
-               Enviando...
-            </span>
-         ) : (
-            "Enviar Mensagem"
-         )}
+            <span>Enviando...</span>
+          </>
+        ) : (
+          <>
+            <span>Enviar mensagem</span>
+            <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+              <path
+                fillRule="evenodd"
+                d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </>
+        )}
       </button>
     </form>
   );

@@ -1,121 +1,140 @@
 "use client";
 
-
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Scissors, HeartPulse } from "lucide-react";
-
-
-import { FaStethoscope, FaSyringe, FaMicroscope, FaShoppingCart} from 'react-icons/fa';
+import { Scissors, HeartPulse, Check } from "lucide-react";
+import { FaStethoscope, FaSyringe, FaMicroscope, FaShoppingCart } from "react-icons/fa";
 
 const AboutUs = () => {
-  
   const services = [
-    { icon: <FaStethoscope className="text-purple-500" />, name: "Consultas veterinárias" },
-    { icon: <FaSyringe className="text-purple-500" />, name: "Vacinações" },
-    { icon: <FaMicroscope className="text-purple-500" />, name: "Exames" },
-    { icon: <HeartPulse className="text-purple-500" />, name: "Pequenos procedimentos cirúrgicos" },
-    { icon: <FaShoppingCart className="text-purple-500" />, name: "Pet shop com produtos selecionados" },
-    { icon: <Scissors className="text-purple-500" />, name: "Banho e tosa com cuidado e carinho" },
+    { icon: <FaStethoscope />, name: "Consultas veterinárias" },
+    { icon: <FaSyringe />, name: "Vacinações completas" },
+    { icon: <FaMicroscope />, name: "Exames laboratoriais" },
+    { icon: <HeartPulse className="w-4 h-4" />, name: "Pequenas cirurgias" },
+    { icon: <FaShoppingCart />, name: "Pet shop selecionado" },
+    { icon: <Scissors className="w-4 h-4" />, name: "Banho e tosa" },
   ];
 
-  
   const listContainerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.2, 
-      },
+      transition: { staggerChildren: 0.08 },
     },
   };
 
   const listItemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
+    hidden: { opacity: 0, x: -10 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.4 } },
   };
 
   return (
-    <section id="about" className="py-20 bg-gray-50">
+    <section id="about" className="relative py-24 lg:py-32 bg-white overflow-hidden">
+      {/* Decor */}
+      <div className="absolute inset-0 -z-10 pointer-events-none">
+        <div className="absolute top-1/3 -right-20 w-80 h-80 bg-gold-400/10 rounded-full blur-3xl" />
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true, amount: 0.2 }}
-        >
-          {/* Imagem à esquerda */}
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+          {/* Imagem com composição */}
           <motion.div
-            className="flex justify-center"
-            initial={{ scale: 0.9, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            viewport={{ once: true }}
+            className="lg:col-span-5 relative"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.8 }}
           >
-            <Image
-              src="/sobrenos.png"
-              alt="Cachorro e gato sorrindo"
-              width={400}
-              height={400}
-              className="rounded-2xl shadow-2xl border-4 border-purple-200 object-cover"
-            />
+            <div className="relative aspect-[4/5] max-w-md mx-auto">
+              <div className="absolute inset-0 rounded-[2.5rem] overflow-hidden shadow-soft-lg">
+                <Image
+                  src="/sobrenos.png"
+                  alt="Equipe da Império dos Pets cuidando de um pet"
+                  fill
+                  sizes="(max-width: 1024px) 90vw, 40vw"
+                  className="object-cover"
+                />
+              </div>
+
+              {/* Moldura decorativa */}
+              <div className="absolute -inset-4 -z-10 rounded-[3rem] border border-brand-200/60" />
+              <div className="absolute -bottom-6 -right-6 -z-10 w-32 h-32 bg-gold-400/20 rounded-full blur-2xl" />
+
+              {/* Selo */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5, duration: 0.5 }}
+                className="absolute -bottom-6 -left-6 bg-white p-5 rounded-2xl shadow-soft-lg border border-cream-200"
+              >
+                <div className="font-display text-4xl font-semibold text-brand-700 leading-none">5+</div>
+                <div className="text-xs text-ink-500 mt-1 uppercase tracking-wider font-medium">
+                  anos de história
+                </div>
+              </motion.div>
+            </div>
           </motion.div>
 
-          {/* Título e textos à direita */}
-          <div className="flex flex-col justify-center">
-            <motion.h2
-              className="text-4xl font-extrabold text-purple-700 mb-4"
-              initial={{ opacity: 0, y: -20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              Sobre Nós
-            </motion.h2>
+          {/* Texto */}
+          <motion.div
+            className="lg:col-span-7"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.7 }}
+          >
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-sage-50 border border-sage-100 rounded-full text-xs font-semibold text-sage-500 tracking-wide uppercase mb-5">
+              <span className="w-1.5 h-1.5 rounded-full bg-sage-400" />
+              Quem somos
+            </span>
 
-            <motion.p
-              className="text-lg text-gray-700 mb-4 leading-relaxed"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              A Império dos Pets possui mais de 5 anos de dedicação ao cuidado e à saúde dos animais. Nossa missão vai além de oferecer serviços veterinários — buscamos promover qualidade de vida e bem-estar para cada pet que passa por aqui.
-            </motion.p>
+            <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-ink-900 leading-[1.05]">
+              Mais que uma clínica,{" "}
+              <span className="italic text-gradient-brand">uma família</span>{" "}
+              que cuida.
+            </h2>
 
-            {/* Seção da lista de serviços */}
-            <motion.div
-                className="mt-6"
+            <p className="mt-6 text-lg text-ink-500 leading-relaxed">
+              A Império dos Pets nasceu da paixão por animais e da certeza de que cada pet merece
+              atendimento atencioso, profissional e cheio de carinho. Há mais de 5 anos cuidando
+              da saúde, da estética e do bem-estar do seu melhor amigo.
+            </p>
+
+            <p className="mt-4 text-lg text-ink-500 leading-relaxed">
+              Nossa missão vai além dos serviços — buscamos promover qualidade de vida e tranquilidade
+              para tutores e pets. Aqui, eles são tratados como verdadeiros membros da família.
+            </p>
+
+            {/* Lista de estrutura */}
+            <div className="mt-10">
+              <h3 className="text-sm font-semibold text-ink-700 uppercase tracking-wider mb-5">
+                Estrutura completa
+              </h3>
+              <motion.ul
+                className="grid grid-cols-1 sm:grid-cols-2 gap-3"
                 variants={listContainerVariants}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
-            >
-                <h3 className="text-xl font-bold text-gray-800 mb-4">
-                    Contamos com uma estrutura completa que reúne:
-                </h3>
-                <ul className="space-y-3">
-                    {services.map((service, index) => (
-                        <motion.li key={index} className="flex items-center" variants={listItemVariants}>
-                            <div className="text-2xl mr-4">{service.icon}</div>
-                            <span className="text-gray-700 text-lg">{service.name}</span>
-                        </motion.li>
-                    ))}
-                </ul>
-            </motion.div>
-
-            <motion.p
-              className="text-lg text-gray-700 mt-6 leading-relaxed"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              Aqui, cada atendimento é feito com responsabilidade, atenção e muito amor. A saúde e o conforto do seu pet são a nossa prioridade. Trabalhamos todos os dias para que eles tenham uma vida mais feliz, saudável e segura — como verdadeiros membros da família.
-            </motion.p>
-          </div>
-        </motion.div>
+              >
+                {services.map((service, index) => (
+                  <motion.li
+                    key={index}
+                    className="flex items-center gap-3 p-3 rounded-xl bg-cream-50 border border-cream-200 hover:border-brand-200 hover:bg-brand-50/50 transition-colors duration-300"
+                    variants={listItemVariants}
+                  >
+                    <div className="w-9 h-9 rounded-lg bg-brand-100 flex items-center justify-center flex-shrink-0 text-brand-700 [&>svg]:w-4 [&>svg]:h-4">
+                      {service.icon}
+                    </div>
+                    <span className="text-sm font-medium text-ink-800">{service.name}</span>
+                    <Check className="w-4 h-4 text-sage-400 ml-auto flex-shrink-0" />
+                  </motion.li>
+                ))}
+              </motion.ul>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
