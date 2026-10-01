@@ -367,7 +367,18 @@ function App() {
                         <p>
                             © {new Date().getFullYear()} Império dos Pets. Todos os direitos reservados.
                         </p>
-                        <p className="italic">Feito com 💜 para os pets que amamos.</p>
+                        
+                        <p>
+                            Desenvolvido por{" "}
+                            <a
+                                href="https://www.bernardopiresdev.com.br/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-brand-400 hover:text-white transition-colors underline-offset-2 hover:underline"
+                            >
+                                Bernardo Pires Dev
+                            </a>
+                        </p>
                     </div>
                 </div>
             </footer>
